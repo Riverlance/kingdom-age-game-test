@@ -1,0 +1,259 @@
+RVVRowLabel < Label
+  font: verdana-11px-monochrome
+  background-color: alpha
+  text-offset: 2 0
+  focusable: true
+
+  $on:
+    color: #007700
+  $!on:
+    color: #333b43
+
+  $focus:
+    background-color: #333b43
+
+  $on focus:
+    color: #00ff00
+  $!on focus:
+    color: #ffffff
+
+
+
+
+
+RVViewWindow < MainWindow
+  &loc: '${GameRuleViolationWindowTitle}'
+  size: 400 600
+  @onEscape: |
+    GameRuleViolation.destroyRVViewWindow()
+
+  ComboBox
+    id: rvViewTypeActionComboBox
+    anchors.top: parent.top
+    anchors.left: parent.left
+    width: 100
+
+  Button
+    id: rvViewRemoveButton
+    icon: /images/ui/console/clear_channel
+    &loct: '${GameRuleViolationViewDetachButtonTooltip}'
+    anchors.top: parent.top
+    anchors.right: parent.right
+    width: 25
+    @onClick: |
+      GameRuleViolation.rvViewDetachRow()
+
+  Button
+    id: rvViewActionButton
+    &loc: '${GameRuleViolationViewActionButton}'
+    anchors.top: parent.top
+    anchors.right: prev.left
+    width: 50
+    @onClick: |
+      GameRuleViolation.rvViewAction()
+
+  ComboBox
+    id: rvViewActionComboBox
+    anchors.top: parent.top
+    anchors.left: rvViewTypeActionComboBox.right
+    anchors.right: rvViewActionButton.left
+    margin-left: 3
+    margin-right: 3
+
+  Label
+    &loc: '${GameRuleViolationViewReasonLabel}:'
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    margin-top: 5
+
+  ComboBox
+    id: rvViewActionReasonComboBox
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 3
+
+  Label
+    id: commentLabel
+    &loc: '${GameRuleViolationViewCommentLabel}:'
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    margin-top: 5
+
+  VerticalScrollBar
+    id: commentScrollBar
+    pixels-scroll: true
+    height: 80
+    anchors.top: prev.bottom
+    anchors.right: parent.right
+    margin-top: 3
+    step: 14
+
+  MultilineTextEdit
+    id: rvViewCommentMultilineTextEdit
+    anchors.top: prev.top
+    anchors.bottom: prev.bottom
+    anchors.left: parent.left
+    anchors.right: prev.left
+    vertical-scrollbar: commentScrollBar
+    text-wrap: true
+    focusable: true
+    editable: true
+    max-length: 255
+
+  VerticalScrollBar
+    id: rvViewScrollBar
+    anchors.top: prev.bottom
+    anchors.bottom: rvViewStateComboBox.top
+    anchors.right: parent.right
+    margin-top: 10
+    margin-bottom: 10
+    pixels-scroll: true
+    step: 14
+
+  TextList
+    id: rvViewList
+    vertical-scrollbar: rvViewScrollBar
+    anchors.top: prev.top
+    anchors.bottom: prev.bottom
+    anchors.left: parent.left
+    anchors.right: prev.left
+    focusable: false
+
+  Button
+    id: rvViewRemoveButton
+    icon: /images/ui/console/close_channel
+    &loct: '${GameRuleViolationViewRemoveButtonTooltip}'
+    anchors.bottom: rvViewRowsPerPageLabel.top
+    anchors.left: parent.left
+    width: 25
+    @onClick: |
+      GameRuleViolation.rvViewRemoveRow()
+
+  Button
+    id: rvViewSetStateButton
+    &loc: '${GameRuleViolationViewSetStateButton}'
+    &loct: '${GameRuleViolationViewSetStateButtonTooltip}'
+    anchors.bottom: rvViewRowsPerPageLabel.top
+    anchors.left: prev.right
+    width: 100
+    @onClick: |
+      GameRuleViolation.rvViewSetReportState()
+
+  ComboBox
+    id: rvViewStateComboBox
+    anchors.bottom: rvViewRowsPerPageLabel.top
+    anchors.left: prev.right
+    margin-left: 3
+
+  TextEdit
+    id: rvViewPage
+    !text: '1'
+    anchors.bottom: rvViewRowsPerPageLabel.top
+    anchors.right: next.left
+    margin-top: 10
+    margin-right: 3
+    width: 40
+    max-length: 4
+    @onTextChange: GameRuleViolation.onRVViewPageChange(self)
+
+  Button
+    icon: /images/ui/console/left_arrow
+    &loct: '${GameRuleViolationViewButtonPrevTooltip}'
+    anchors.bottom: rvViewRowsPerPageLabel.top
+    anchors.right: next.left
+    margin-top: 10
+    width: 25
+    @onClick: |
+      GameRuleViolation.rvViewPreviousPage()
+
+  Button
+    icon: /images/ui/console/right_arrow
+    &loct: '${GameRuleViolationViewButtonNextTooltip}'
+    anchors.bottom: next.top
+    anchors.right: parent.right
+    margin-top: 10
+    width: 25
+    @onClick: |
+      GameRuleViolation.rvViewNextPage()
+
+  Label
+    id: rvViewRowsPerPageLabel
+    anchors.bottom: next.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-bottom: 3
+
+  OptionScrollbar
+    id: rvViewRowsPerPageOptionScrollbar
+    step: 10
+    anchors.bottom: next.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-bottom: 10
+    minimum: 10
+    maximum: 50
+    @onValueChange: |
+      local value = GameRuleViolation.getRowsPerPage()
+      local text = value
+      if value < 10 or value >= 50 then
+        text = 'max'
+      end
+      GameRuleViolation.updateRowsPerPageLabel(value)
+
+    $!first:
+      anchors.top: none
+
+  Label
+    &loc: '${GameRuleViolationViewType}:'
+    anchors.bottom: next.top
+    anchors.left: parent.left
+    margin-bottom: 3
+
+  ComboBox
+    id: rvViewTypeComboBox
+    anchors.bottom: next.top
+    anchors.left: parent.left
+    margin-bottom: 10
+    width: 100
+
+  Label
+    &loc: '${GameRuleViolationViewReason}:'
+    anchors.bottom: next.top
+    anchors.left: parent.left
+    margin-bottom: 3
+
+  ComboBox
+    id: rvViewReasonComboBox
+    anchors.bottom: rvViewCloseButton.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-bottom: 10
+
+  Button
+    &loc: '${GameRuleViolationViewRefreshPageButton}'
+    &loct: '${GameRuleViolationViewButtonRefreshTooltip}'
+    anchors.bottom: rvViewCloseButton.bottom
+    anchors.right: rvViewCloseButton.left
+    margin-right: 4
+    width: 80
+    @onClick: |
+      GameRuleViolation.rvViewUpdatePage()
+
+  Button
+    id: rvViewCloseButton
+    &loc: '${CorelibInfoClose}'
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    width: 80
+    @onClick: |
+      GameRuleViolation.destroyRVViewWindow()
+
+  Button
+    id: rvViewClearButton
+    &loc: '${GameRuleViolationViewClearButton}'
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    width: 80
+    @onClick: |
+      GameRuleViolation.clearViewWindow()

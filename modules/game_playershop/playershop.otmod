@@ -1,0 +1,9 @@
+Module
+  name: game_playershop
+  description: Player Shop interface
+  author: andrefaramir, baxnie, Kamenuvol
+  website: https://github.com/edubart/otclient
+  sandboxed: true
+  scripts: [ playershop ]
+  @onLoad: GamePlayerShop.init()
+  @onUnload: GamePlayerShop.terminate()

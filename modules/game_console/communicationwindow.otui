@@ -1,0 +1,198 @@
+IgnoreListLabel < Label
+  font: verdana-11px-monochrome
+  background-color: alpha
+  text-offset: 2 0
+  focusable: true
+  phantom: false
+
+  $focus:
+    background-color: #ffffff22
+    color: #ffffff
+
+WhiteListLabel < Label
+  font: verdana-11px-monochrome
+  background-color: alpha
+  text-offset: 2 0
+  focusable: true
+  phantom: false
+
+  $focus:
+    background-color: #ffffff22
+    color: #ffffff
+
+
+MainWindow
+  id: communicationWindow
+  &loc: '${GameConsoleCommunicationWindow}'
+  size: 515 410
+  @onEscape: self:destroy()
+
+  CheckBox
+    id: checkboxUseIgnoreList
+    &loc: '${GameConsoleCheckboxUseIgnoreList}'
+    anchors.left: parent.left
+    anchors.top: parent.top
+    width: 230
+
+  Label
+    &loc: '${GameConsoleIgnoredPlayersList}:'
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-top: 10
+
+  TextList
+    id: ignoreList
+    vertical-scrollbar: ignoreListScrollBar
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    height: 150
+    width: 230
+    margin-bottom: 10
+    margin-top: 3
+    padding: 1
+    focusable: false
+
+  TextEdit
+    id: ignoreNameEdit
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    width: 230
+    margin-top: 5
+
+  Button
+    id: buttonIgnoreAdd
+    &loc: '${CorelibInfoAdd}'
+    margin-top: 5
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+
+  Button
+    id: buttonIgnoreRemove
+    &loc: '${CorelibInfoRemove}'
+    margin-left: 5
+    anchors.top: prev.top
+    anchors.left: prev.right
+
+  Label
+    &loc: '${GameConsoleIgnoreSettings}'
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-top: 20
+
+  CheckBox
+    id: checkboxIgnorePrivateMessages
+    &loc: '${GameConsoleCheckboxIgnorePrivateMessages}'
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    width: 230
+    margin-top: 5
+
+  CheckBox
+    id: checkboxIgnoreYelling
+    &loc: '${GameConsoleCheckboxIgnoreYelling}'
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    width: 230
+    margin-top: 5
+
+  CheckBox
+    id: checkboxUseWhiteList
+    &loc: '${GameConsoleCheckboxUseWhiteList}'
+    anchors.top: parent.top
+    anchors.left: ignoreList.right
+    margin-left: 20
+    width: 230
+
+  Label
+    &loc: '${GameConsoleAllowedPlayersList}:'
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+    margin-top: 10
+
+  TextList
+    id: whiteList
+    vertical-scrollbar: whiteListScrollBar
+    anchors.left: prev.left
+    anchors.top: prev.bottom
+    height: 150
+    width: 230
+    margin-bottom: 10
+    margin-top: 3
+    padding: 1
+    focusable: false
+
+  TextEdit
+    id: whitelistNameEdit
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+    width: 230
+    margin-top: 5
+
+  Button
+    id: buttonWhitelistAdd
+    &loc: '${CorelibInfoAdd}'
+    margin-top: 5
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+
+  Button
+    id: buttonWhitelistRemove
+    &loc: '${CorelibInfoRemove}'
+    margin-left: 5
+    anchors.top: prev.top
+    anchors.left: prev.right
+
+  Label
+    &loc: '${GameConsoleAllowedSettings}'
+    anchors.left: whiteList.left
+    anchors.top: prev.bottom
+    margin-top: 20
+
+  CheckBox
+    id: checkboxAllowVIPs
+    &loc: '${GameConsoleCheckboxAllowVIPs}'
+    anchors.left: prev.left
+    anchors.top: prev.bottom
+    width: 230
+    margin-top: 5
+
+  Panel
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 30
+
+    Panel
+      size: 160 30
+      anchors.horizontalCenter: parent.horizontalCenter
+
+      Button
+        id: buttonSave
+        &loc: '${GameConsoleButtonSave}'
+        width: 75
+        anchors.top: parent.top
+        anchors.left: parent.left
+
+      Button
+        id: buttonCancel
+        &loc: '${CorelibInfoCancel}'
+        width: 75
+        anchors.top: parent.top
+        anchors.left: prev.right
+        margin-left: 10
+
+  VerticalScrollBar
+    id: ignoreListScrollBar
+    anchors.top: ignoreList.top
+    anchors.bottom: ignoreList.bottom
+    anchors.right: ignoreList.right
+    step: 14
+    pixels-scroll: true
+
+  VerticalScrollBar
+    id: whiteListScrollBar
+    anchors.top: whiteList.top
+    anchors.bottom: whiteList.bottom
+    anchors.right: whiteList.right
+    step: 14
+    pixels-scroll: true

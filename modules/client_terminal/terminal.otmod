@@ -1,0 +1,11 @@
+Module
+  name: client_terminal
+  description: Terminal for executing lua functions
+  author: edubart
+  website: https://github.com/edubart/otclient
+  scripts: [ terminal ]
+  dependencies: [ game_things ]
+  // dependency also client_topmenu, if it is included to top menu
+  sandboxed: true
+  @onLoad: ClientTerminal.init()
+  @onUnload: ClientTerminal.terminate()

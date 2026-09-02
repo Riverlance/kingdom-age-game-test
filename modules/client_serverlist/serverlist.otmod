@@ -1,0 +1,15 @@
+Module
+  name: client_serverlist
+  description: Manages a server list of previously entered servers
+  author: BeniS
+  website: https://github.com/edubart/otclient
+  scripts: [ serverlist, addserver ]
+  dependencies: [ client_entergame ]
+
+  @onLoad: |
+    ClientServerList.init()
+    ClientAddServer.init()
+
+  @onUnload: |
+    ClientServerList.terminate()
+    ClientAddServer.terminate()

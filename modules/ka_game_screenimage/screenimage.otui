@@ -1,0 +1,4 @@
+ScreenImage < UIWidget
+  margin: 0 0 0 0
+  phantom: true
+  focusable: false

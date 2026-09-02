@@ -1,0 +1,36 @@
+PartyLevelCalculatorWindow < MainWindow
+  id: partyLevelCalculatorWindow
+  &loc: '${ClientOptionsPartyListLevelCalculatorWindowTitle}'
+  size: 250 150
+  @onEscape: |
+    GamePartyList.partyLevelCalculatorWindowHide()
+
+  TextEdit
+    id: levelTextEdit
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    max-length: 5
+    @onTextChange: GamePartyList.onLevelTextEditChange(self)
+
+  Label
+    id: levelLabel
+    &loct: '${GamePartyListTypeLevelForCalculate}'
+    !tooltip-type: TooltipType.textBlock
+    text-wrap: true
+    text-auto-resize: true
+    color: #f2af4eff
+    phantom: false
+    anchors.top: prev.outsideBottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 10
+
+  Button
+    id: closeButton
+    &loc: '${CorelibInfoClose}'
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    width: 80
+    @onClick: |
+      GamePartyList.partyLevelCalculatorWindowHide()

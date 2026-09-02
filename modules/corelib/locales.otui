@@ -1,0 +1,37 @@
+LocalesButton < UIWidget
+  size: 96 96
+  image-size: 96 96
+  image-smooth: true
+  text-offset: 0 64
+  color: #dfdfdf
+  font: sans-11px
+
+UIWindow
+  id: localesWindow
+  anchors.fill: parent
+  opacity: 0.85
+  background-color: black
+  clipping: true
+
+  Panel
+    id: localesPanel
+    // 112 + 112 + 32
+    height: 256
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+
+    layout:
+      type: grid
+      cell-size: 96 112
+      cell-spacing: 32
+      flow: true
+
+  Label
+    !text: 'Select your language\nPress \'Esc\' to close'
+    text-align: center
+    font: sans-11px
+    color: white
+    anchors.bottom: prev.outsideTop
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-bottom: 32
+    text-auto-resize: true

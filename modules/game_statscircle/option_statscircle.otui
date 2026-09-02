@@ -1,0 +1,177 @@
+Panel
+
+  OptionLabel
+    id: leftArcLabel
+    &loc: '${GameStatsCircleOptionLeft}'
+    &loct: '${GameStatsCircleOptionLeftTooltip}'
+    anchors.right: parent.horizontalCenter
+    margin-right: 10
+
+  OptionComboBox
+    id: leftArcComboBox
+    anchors.top: prev.outsideBottom
+    anchors.left: prev.left
+    anchors.right: prev.right
+    margin-top: 2
+    @onTextChange: |
+      local option = self:getCurrentOption()
+      if option then
+        GameStatsCircle.setArcStatsType(GameStatsCircle.m.leftArc, option.data)
+      end
+
+
+
+  OptionLabel
+    id: rightArcLabel
+    &loc: '${GameStatsCircleOptionRight}'
+    &loct: '${GameStatsCircleOptionRightTooltip}'
+    $!first:
+      anchors.top: leftArcLabel.top
+      margin-top: 0
+    anchors.left: parent.horizontalCenter
+    margin-left: 10
+
+  OptionComboBox
+    id: rightArcComboBox
+    anchors.top: prev.outsideBottom
+    anchors.left: prev.left
+    anchors.right: prev.right
+    margin-top: 2
+    @onTextChange: |
+      local option = self:getCurrentOption()
+      if option then
+        GameStatsCircle.setArcStatsType(GameStatsCircle.m.rightArc, option.data)
+      end
+
+
+
+  OptionLabel
+    id: topArcLabel
+    &loc: '${GameStatsCircleOptionTop}'
+    &loct: '${GameStatsCircleOptionTopTooltip}'
+    anchors.right: parent.horizontalCenter
+    margin-right: 10
+
+  OptionComboBox
+    id: topArcComboBox
+    anchors.top: prev.outsideBottom
+    anchors.left: prev.left
+    anchors.right: prev.right
+    margin-top: 2
+    @onTextChange: |
+      local option = self:getCurrentOption()
+      if option then
+        GameStatsCircle.setArcStatsType(GameStatsCircle.m.topArc, option.data)
+      end
+
+
+
+  OptionLabel
+    id: bottomArcLabel
+    &loc: '${GameStatsCircleOptionBottom}'
+    &loct: '${GameStatsCircleOptionBottomTooltip}'
+    $!first:
+      anchors.top: topArcLabel.top
+      margin-top: 0
+    anchors.left: parent.horizontalCenter
+    margin-left: 10
+
+  OptionComboBox
+    id: bottomArcComboBox
+    anchors.top: prev.outsideBottom
+    anchors.left: prev.left
+    anchors.right: prev.right
+    margin-top: 2
+    @onTextChange: |
+      local option = self:getCurrentOption()
+      if option then
+        GameStatsCircle.setArcStatsType(GameStatsCircle.m.bottomArc, option.data)
+      end
+
+
+
+  OptionLabel
+    id: sizeLabel
+    &loc: '${GameStatsCircleOptionSize}'
+    &loct: '${GameStatsCircleOptionSizeTooltip}'
+    anchors.right: parent.horizontalCenter
+    margin-right: 10
+
+  OptionScrollbar
+    id: sizeScrollbar
+    anchors.left: prev.left
+    anchors.right: prev.right
+    minimum: 1
+    maximum: 100
+    symbol: %
+    @onValueChange: GameStatsCircle.setSize(self:getValue() / 100)
+
+
+
+  OptionLabel
+    id: distFromCenLabel
+    &loc: '${CorelibInfoDistance}'
+    &loct: '${GameStatsCircleOptionDistanceTooltip}'
+    $!first:
+      anchors.top: sizeLabel.top
+      margin-top: 0
+    anchors.left: parent.horizontalCenter
+    margin-left: 10
+
+  OptionScrollbar
+    id: distFromCenScrollbar
+    anchors.left: prev.left
+    anchors.right: prev.right
+    minimum: 0
+    maximum: 100
+    symbol: %
+    @onValueChange: GameStatsCircle.setDistanceFromCenter(self:getValue() / 100)
+
+
+
+  OptionLabel
+    id: fillOpacityLabel
+    &loc: '${GameStatsCircleOptionFillOpacity}'
+    &loct: '${GameStatsCircleOptionFillOpacityTooltip}'
+    anchors.right: parent.horizontalCenter
+    margin-right: 10
+
+  OptionScrollbar
+    id: fillOpacityScrollbar
+    anchors.left: prev.left
+    anchors.right: prev.right
+    minimum: 0
+    maximum: 100
+    symbol: %
+    @onValueChange: GameStatsCircle.setCircleFillOpacity(self:getValue() / 100)
+
+
+
+  OptionLabel
+    id: bgOpacityLabel
+    &loc: '${GameStatsCircleOptionBackgroundOpacity}'
+    &loct: '${GameStatsCircleOptionBackgroundOpacityTooltip}'
+    $!first:
+      anchors.top: fillOpacityLabel.top
+      margin-top: 0
+    anchors.left: parent.horizontalCenter
+    margin-left: 10
+
+  OptionScrollbar
+    id: bgOpacityScrollbar
+    anchors.left: prev.left
+    anchors.right: prev.right
+    minimum: 0
+    maximum: 100
+    symbol: %
+    @onValueChange: GameStatsCircle.setCircleBackgroundOpacity(self:getValue() / 100)
+
+
+
+  OptionCheckBox
+    id: gameScreenBasedCheckBox
+    &loc: '${GameStatsCircleOptionGameScreenBased}'
+    &loct: '${GameStatsCircleOptionGameScreenBasedTooltip}'
+    $!first:
+      margin-top: 10
+    @onCheckChange: GameStatsCircle.setGameScreenBased(self:isChecked())

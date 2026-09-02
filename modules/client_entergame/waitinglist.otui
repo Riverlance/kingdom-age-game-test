@@ -1,0 +1,46 @@
+MainWindow
+  id: waitingWindow
+  &loc: '${CharacterListWaitingListTitle}'
+  size: 260 200
+  draggable: false
+  @onEscape: ClientCharacterList.cancelWait()
+
+  Label
+    id: infoLabel
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 50
+    text-wrap: true
+
+  ProgressBar
+    id: progressBar
+    height: 15
+    background-color: #4444ff
+    anchors.top: prev.outsideBottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+
+  Label
+    id: timeLabel
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.outsideBottom
+    margin-top: 10
+    text-wrap: true
+    text-auto-resize: true
+
+  HorizontalSeparator
+    id: separator
+    anchors.bottom: next.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-bottom: 10
+
+  Button
+    id: buttonCancel
+    &loc: '${CorelibInfoCancel}'
+    width: 64
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: ClientCharacterList.cancelWait()

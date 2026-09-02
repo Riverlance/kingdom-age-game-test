@@ -1,0 +1,18 @@
+Module
+  name: client_entergame
+  description: Manages enter game and character list windows
+  author: edubart
+  website: https://github.com/edubart/otclient
+  scripts: [ entergame, characterlist ]
+
+  load-later:
+    - game_features
+    - game_things
+
+  @onLoad: |
+    ClientEnterGame.init()
+    ClientCharacterList.init()
+
+  @onUnload: |
+    ClientEnterGame.terminate()
+    ClientCharacterList.terminate()

@@ -1,0 +1,130 @@
+PowerEffect < UIParticles
+  anchors.fill: parent
+  focusable: false
+  phantom: true
+
+PowerSendingParticlesBoost1 < PowerEffect
+  effect: powersending-boost1-effect
+
+PowerSendingParticlesBoost2 < PowerEffect
+  effect: powersending-boost2-effect
+
+PowerSendingParticlesBoost3 < PowerEffect
+  effect: powersending-boost3-effect
+
+
+VisibilityButton < UIWidget
+  id: visibilityButton
+  size: 11 11
+  image-source: /images/ui/_button/visibility
+  image-clip: 0 0 11 11
+  fixed-size: true
+  opacity: 0
+
+  $on:
+    image-clip: 0 11 11 11
+
+//vertical bar
+
+HotkeyBarVertical < UIHotkeyBar
+  anchors.verticalCenter: gameScreenArea.verticalCenter
+  width: 36
+  margin-left: 8
+  margin-right: 8
+  padding: 1
+  border-color: #ffffff
+  border-width: 0
+  focusable: false
+  layout:
+    type: verticalBox
+    fit-children: true
+
+  $on:
+    border-width: 1
+    padding: 10 0
+
+  UIWidget
+    id: hotkeyBarList
+    phantom: true
+    layout:
+      type: verticalBox
+      fit-children: true
+
+  VisibilityButton
+    margin-top: 4
+    margin-bottom: 4
+
+    $!on:
+      margin-top: 60
+      margin-bottom: 60
+
+
+//horizontal bar
+
+HotkeyBarHorizontal < UIHotkeyBar
+  anchors.horizontalCenter: gameScreenArea.horizontalCenter
+  height: 36
+  margin-top: 8
+  margin-bottom: 16
+  padding: 1
+  border-color: #ffffff
+  border-width: 0
+  focusable: false
+  layout:
+    type: horizontalBox
+    fit-children: true
+
+  $on:
+    border-width: 1
+    padding: 0 10
+
+  UIWidget
+    id: hotkeyBarList
+    phantom: true
+    layout:
+      type: horizontalBox
+      fit-children: true
+
+  VisibilityButton
+    margin-left: 4
+    margin-right: 4
+
+    $!on:
+      margin-left: 60
+      margin-right: 60
+
+//bar container
+
+HotkeyBarContainer < UIHotkeyBarContainer
+  text-align: center
+  image-source: /images/ui/slot/item
+  image-clip: 0 0 34 34
+  width: 32
+  height: 32
+  fixed-size: true
+  focusable: false
+  border-color: white
+
+  UIItem
+    id: item
+    phantom: true
+    virtual: true
+    anchors.fill: parent
+
+  UIWidget
+    id: power
+    phantom: true
+    anchors.fill: parent
+
+  UIWidget
+    id: deleteButton
+    image-source: /images/ui/_button/mini_window
+    image-clip: 28 0 14 14
+    size: 8 8
+    visible: false
+    anchors.top: parent.top
+    anchors.right: parent.right
+
+    @onClick: |
+      self:getParent():getParentBar():removeHotkey(self:getParent().settings.keyCombo)
+      g_sounds.getChannel(AudioChannels.Gui):play(f('%s/power_popout.ogg', getAudioChannelPath(AudioChannels.Gui)), 1.)

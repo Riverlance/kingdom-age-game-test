@@ -1,0 +1,97 @@
+Panel
+
+  OptionCheckBox
+    id: enableAudio
+    &loc: '${ClientOptionsEnableAudio}'
+    &loct: '${ClientOptionsAudioTitle} (${ClientOptionsAudioActionKey})'
+    @locpar: return { ClientOptionsAudioActionKey = ClientOptionsAudioActionKey }
+
+  OptionHorizontalSeparator
+
+  OptionCheckBox
+    id: enableMusic
+    &loc: '${ClientOptionsEnableMusic}'
+    $!first:
+      margin-top: 10
+
+  OptionLabel
+    id: musicVolumeLabel
+    &loc: '${ClientOptionsMusicVolumeLabel}'
+
+  OptionScrollbar
+    id: musicVolume
+    minimum: 0
+    maximum: 100
+    symbol: %
+
+  OptionHorizontalSeparator
+
+  OptionCheckBox
+    id: enableSoundAmbient
+    &loc: '${ClientOptionsEnableSoundAmbient}'
+    $!first:
+      margin-top: 10
+
+  OptionLabel
+    id: soundAmbientVolumeLabel
+    &loc: '${ClientOptionsSoundAmbientVolumeLabel}'
+
+  OptionScrollbar
+    id: soundAmbientVolume
+    minimum: 0
+    maximum: 100
+    symbol: %
+
+  OptionHorizontalSeparator
+
+  OptionCheckBox
+    id: enableSoundEffect
+    &loc: '${ClientOptionsEnableSoundEffect}'
+    $!first:
+      margin-top: 10
+
+  OptionLabel
+    id: soundEffectVolumeLabel
+    &loc: '${ClientOptionsSoundEffectVolumeLabel}'
+
+  OptionScrollbar
+    id: soundEffectVolume
+    minimum: 0
+    maximum: 100
+    symbol: %
+
+  OptionHorizontalSeparator
+
+  OptionCheckBox
+    id: enableSoundVoice
+    &loc: '${ClientOptionsEnableSoundVoice}'
+    $!first:
+      margin-top: 10
+
+  OptionLabel
+    id: soundVoiceVolumeLabel
+    &loc: '${ClientOptionsSoundVoiceVolumeLabel}'
+
+  OptionScrollbar
+    id: soundVoiceVolume
+    minimum: 0
+    maximum: 100
+    symbol: %
+
+  OptionHorizontalSeparator
+
+  OptionCheckBox
+    id: enableSoundGui
+    &loc: '${ClientOptionsEnableSoundGui}'
+    $!first:
+      margin-top: 10
+
+  OptionLabel
+    id: soundGuiVolumeLabel
+    &loc: '${ClientOptionsSoundGuiVolumeLabel}'
+
+  OptionScrollbar
+    id: soundGuiVolume
+    minimum: 0
+    maximum: 100
+    symbol: %

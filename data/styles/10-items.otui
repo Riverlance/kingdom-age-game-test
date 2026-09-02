@@ -1,0 +1,14 @@
+Item < UIItem
+  size: 34 34
+  padding: 1
+  image-source: /images/ui/slot/item
+  image-clip: 0 0 34 34
+  font: verdana-11px-rounded
+  border-color: #faebd5
+  color: white
+
+  $on:
+    image-source: /images/ui/slot/item_blessed
+
+  $disabled:
+    color: #646464

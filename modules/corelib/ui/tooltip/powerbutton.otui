@@ -1,0 +1,143 @@
+TooltipPowerLabel < Label
+  anchors.top: prev.outsideBottom
+  anchors.left: parent.left
+  font: sans-11px
+
+TooltipPowerValueLabel < Label
+  anchors.top: prev.top
+  anchors.left: prev.outsideRight
+  anchors.right: parent.right
+  margin-left: 2
+  font: sans-11px
+
+TooltipPowerDescriptionLabel < Label
+  anchors.top: prev.outsideBottom
+  anchors.left: parent.left
+  anchors.right: parent.right
+  font: sans-11px
+
+
+
+TooltipPowerButton < Panel
+  width: 275
+  padding: 8
+  background-color: #111111cc
+  border-width: 1
+  border-color: #98885e
+  phantom: true
+  focusable: false
+
+  // Base
+
+  UIWidget
+    id: icon
+    size: 32 32
+    anchors.top: parent.top
+    anchors.left: parent.left
+
+  Label
+    id: name
+    anchors.top: icon.top
+    anchors.bottom: icon.bottom
+    anchors.left: icon.outsideRight
+    anchors.right: parent.right
+    font: sans-11px
+    color: #dfdfdf
+    text-align: center
+    image-source: /images/ui/_background/default_stone_blue
+    image-repeated: true
+
+  // Info
+
+  TooltipPowerLabel
+    id: classLabel
+    margin-top: 4
+
+    $!hidden:
+      !text: loc'${CorelibInfoClass}:'
+
+  UIWidget
+    id: classIcon
+    size: 11 11
+    anchors.verticalCenter: prev.verticalCenter
+    anchors.right: parent.right
+
+  TooltipPowerValueLabel
+    id: classValue
+    anchors.top: classLabel.top
+    anchors.left: classLabel.outsideRight
+    anchors.right: prev.outsideLeft
+    margin-right: 2
+
+
+  TooltipPowerLabel
+    id: vocationsLabel
+
+    $!hidden:
+      !text: loc'${CorelibTooltipInfoVocations}:'
+
+  TooltipPowerValueLabel
+    id: vocationsValue
+
+
+  TooltipPowerLabel
+    id: levelLabel
+
+    $!hidden:
+      !text: loc'${CorelibInfoLevel}:'
+
+  TooltipPowerValueLabel
+    id: levelValue
+
+
+  TooltipPowerLabel
+    id: manaCostLabel
+
+    $!hidden:
+      !text: loc'${CorelibTooltipInfoManaCost}:'
+
+  TooltipPowerValueLabel
+    id: manaCostValue
+
+
+  TooltipPowerLabel
+    id: cooldownLabel
+
+    $!hidden:
+      !text: loc'${CorelibTooltipInfoCooldown}:'
+
+  TooltipPowerValueLabel
+    id: cooldownValue
+
+
+  TooltipPowerLabel
+    id: premiumLabel
+
+    $!hidden:
+      !text: loc'${CorelibTooltipInfoPremium}:'
+
+  TooltipPowerValueLabel
+    id: premiumValue
+
+
+  TooltipPowerDescriptionLabel
+    id: descriptionLabel
+    anchors.top: prev.outsideBottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 10
+    margin-left: 2
+    color: #e6db74
+
+  TooltipPowerDescriptionLabel
+    id: boostNoneDescriptionLabel
+    margin-top: 10
+    background-color: #9E9A3277
+
+  TooltipPowerDescriptionLabel
+    id: boostLowDescriptionLabel
+    background-color: #b770ff77
+
+  TooltipPowerDescriptionLabel
+    id: boostHighDescriptionLabel
+    background-color: #70b8ff77

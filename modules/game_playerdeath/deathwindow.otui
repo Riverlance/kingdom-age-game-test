@@ -1,0 +1,18 @@
+DeathWindow < MainWindow
+  id: deathWindow
+  &loc: '${GamePlayerDeathMsgYouAreDead}'
+  width: 180
+  height: 70
+
+  Button
+    id: buttonCancel
+    &loc: '${CorelibInfoCancel}'
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+
+  Button
+    id: buttonOk
+    &loc: '${CorelibInfoOk}'
+    anchors.bottom: parent.bottom
+    anchors.right: prev.outsideLeft
+    margin-left: 4

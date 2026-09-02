@@ -1,0 +1,107 @@
+UIWidget
+  id: statsCircle
+  width: 300
+  height: 300
+  anchors.centerIn: parent
+  phantom: true
+  focusable: false
+
+  UIWidget
+    id: leftArc
+    width: 70
+    height: 250
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    phantom: true
+    &isVertical: true
+
+    UIWidget
+      id: bg
+      image-smooth: true
+      image-source: /images/game/creature/stats_circle/left_empty
+      anchors.left: parent.left
+      anchors.verticalCenter: parent.verticalCenter
+      phantom: true
+
+    UIWidget
+      id: fill
+      image-smooth: true
+      image-source: /images/game/creature/stats_circle/left_full
+      anchors.left: prev.left
+      anchors.bottom: prev.bottom
+      phantom: true
+
+  UIWidget
+    id: rightArc
+    width: 70
+    height: 250
+    anchors.right: parent.right
+    anchors.verticalCenter: parent.verticalCenter
+    phantom: true
+    &isVertical: true
+
+    UIWidget
+      id: bg
+      image-smooth: true
+      image-source: /images/game/creature/stats_circle/right_empty
+      anchors.right: parent.right
+      anchors.verticalCenter: parent.verticalCenter
+      phantom: true
+
+    UIWidget
+      id: fill
+      image-smooth: true
+      image-source: /images/game/creature/stats_circle/right_full
+      anchors.right: prev.right
+      anchors.bottom: prev.bottom
+      phantom: true
+
+  UIWidget
+    id: topArc
+    width: 250
+    height: 70
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    phantom: true
+    &isHorizontal: true
+
+    UIWidget
+      id: bg
+      image-smooth: true
+      image-source: /images/game/creature/stats_circle/top_empty
+      anchors.top: parent.top
+      anchors.horizontalCenter: parent.horizontalCenter
+      phantom: true
+
+    UIWidget
+      id: fill
+      image-smooth: true
+      image-source: /images/game/creature/stats_circle/top_full
+      anchors.top: prev.top
+      anchors.left: prev.left
+      phantom: true
+
+  UIWidget
+    id: bottomArc
+    width: 250
+    height: 70
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    phantom: true
+    &isHorizontal: true
+
+    UIWidget
+      id: bg
+      image-smooth: true
+      image-source: /images/game/creature/stats_circle/bottom_empty
+      anchors.bottom: parent.bottom
+      anchors.horizontalCenter: parent.horizontalCenter
+      phantom: true
+
+    UIWidget
+      id: fill
+      image-smooth: true
+      image-source: /images/game/creature/stats_circle/bottom_full
+      anchors.bottom: prev.bottom
+      anchors.left: prev.left
+      phantom: true

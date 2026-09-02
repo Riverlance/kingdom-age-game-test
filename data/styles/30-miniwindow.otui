@@ -1,0 +1,106 @@
+MiniWindow < UIMiniWindow
+  font: verdana-11px-antialised
+  icon-rect: 6 4 16 16
+  width: 192
+  height: 80
+  text-offset: 42 4
+  text-align: topLeft
+  color: #c9bdab
+  image-source: /images/ui/_background/mini_window
+  image-clip: 0 0 264 283
+  image-border-top: 26
+  image-border-bottom: 4
+  image-border-left: 42
+  image-border-right: 4
+  focusable: false
+  // See UIMiniWindow.create() at corelib/ui/uiminiwindow.lua for minimizedHeight
+
+  $on:
+    image-clip: 0 283 264 283
+    // Different footer size when minimized
+    image-border-bottom: 10
+
+  UIWidget
+    id: miniwindowTopBar
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    padding-top: 3
+    padding-bottom: 3
+    padding-left: 3
+    padding-right: 3
+    height: 26
+    phantom: true
+
+  CloseMenuButton
+    &loct: '${CorelibInfoClose}'
+    anchors.verticalCenter: miniwindowTopBar.verticalCenter
+    anchors.right: parent.right
+    margin-top: -1
+    margin-right: 2
+
+  MinimizeMenuButton
+
+  LockMenuButton
+
+  ResizeBorder
+    id: bottomResizeBorder
+    height: 3
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-left: 3
+    margin-right: 3
+    background: #ffffff44
+
+    // 100 for content, 20 for header, 20 for footer
+    minimum: 140
+
+  VerticalScrollBar
+    id: miniwindowScrollBar
+    anchors.top: miniwindowTopBar.outsideBottom
+    anchors.bottom: bottomResizeBorder.outsideTop
+    anchors.right: parent.right
+    step: 14
+    margin-right: 3
+    pixels-scroll: true
+
+    $!on:
+      width: 0
+
+MiniWindowHeader < UIWidget
+  id: miniWindowHeader
+  image-source: /images/ui/_background/default_stone_grey
+  image-repeated: true
+  anchors.top: miniwindowTopBar.outsideBottom
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-left: 3
+  margin-right: 3
+  border-width-bottom: 1
+  border-color: #98885e
+
+MiniWindowContents < ScrollablePanel
+  id: contentsPanel
+  anchors.top: miniwindowScrollBar.top
+  anchors.bottom: miniwindowScrollBar.bottom
+  anchors.left: parent.left
+  anchors.right: miniwindowScrollBar.outsideLeft
+  margin-left: 3
+  vertical-scrollbar: miniwindowScrollBar
+
+MiniWindowFooter < UIWidget
+  id: miniWindowFooter
+  image-source: /images/ui/_background/default_stone_grey
+  image-repeated: true
+  anchors.bottom: bottomResizeBorder.outsideTop
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-left: 3
+  margin-right: 3
+  border-width-top: 1
+  border-color: #98885e
+
+BorderlessGameWindow < UIWindow
+  focusable: false
+  margin: 2

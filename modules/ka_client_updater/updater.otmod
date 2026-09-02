@@ -1,0 +1,11 @@
+Module
+  name: ka_client_updater
+  description: Updater module
+  author: Kamenuvol
+  dependencies: [ client_entergame ]
+  sandboxed: true
+  reloadable: false
+  autoload: true
+  scripts: [ updater ]
+  @onLoad: ClientUpdater.init()
+  @onUnload: ClientUpdater.terminate()

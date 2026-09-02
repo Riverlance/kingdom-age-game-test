@@ -1,0 +1,16 @@
+Module
+  name: ka_game_ui
+  description: Interface
+  author: River
+  website: https://github.com/edubart/otclient
+  sandboxed: true
+  autoload: true
+  scripts: [ expbar, levelup ]
+
+  @onLoad: |
+    GameUIExpBar.init()
+    GameLevelUp.init()
+
+  @onUnload: |
+    GameLevelUp.terminate()
+    GameUIExpBar.terminate()

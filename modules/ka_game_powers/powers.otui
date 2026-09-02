@@ -1,0 +1,99 @@
+PowerTabButton < TabButton
+  size: 20 20
+  icon-source: /images/ui/power/filter
+
+
+
+
+
+MiniWindow
+  id: powersWindow
+  &loc: '${GamePowersWindowTitle}'
+  icon: /images/ui/top_menu/powers
+  &save: true
+  &contentMinimumHeight: 42
+
+  ArrowMenuButton
+    &loct: '${CorelibInfoShowOptions}'
+    anchors.verticalCenter: lockButton.verticalCenter
+    anchors.right: lockButton.outsideLeft
+    @onClick: GamePowers.onClickArrowMenuButton(self)
+
+    $on:
+      &loct: '${CorelibInfoHideOptions}'
+
+  BallMenuButton
+    id: sortMenuButton
+    @onClick: GamePowers.createSortMenu()
+
+  InfoMenuButton
+    !tooltip: f(loc'${GamePowersButtonInfo}', 'Ctrl+K')
+    !tooltip-type: TooltipType.textBlock
+
+  MiniWindowHeader
+    height: 20
+
+    $on:
+      height: 0
+
+    Panel
+      id: filterPanel
+      size: 86 20
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      layout:
+        type: horizontalBox
+        spacing: 2
+
+      PowerTabButton
+        id: filterOffensive
+        !tooltip: loc'${GamePowersTabOffensiveShow}'
+        icon-clip: 0 0 20 20
+        @onClick: GamePowers.onClickFilterOffensive(self)
+
+        $on:
+          !tooltip: loc'${GamePowersTabOffensiveHide}'
+          icon-clip: 0 20 20 20
+
+      PowerTabButton
+        id: filterDefensive
+        !tooltip: loc'${GamePowersTabDefensiveShow}'
+        icon-clip: 20 0 20 20
+        @onClick: GamePowers.onClickFilterDefensive(self)
+
+        $on:
+          !tooltip: loc'${GamePowersTabDefensiveHide}'
+          icon-clip: 20 20 20 20
+
+      PowerTabButton
+        id: filterNonPremium
+        !tooltip: loc'${GamePowersTabNonPremiumShow}'
+        icon-clip: 40 0 20 20
+        @onClick: GamePowers.onClickFilterNonPremium(self)
+
+        $on:
+          !tooltip: loc'${GamePowersTabNonPremiumHide}'
+          icon-clip: 40 20 20 20
+
+      PowerTabButton
+        id: filterPremium
+        !tooltip: loc'${GamePowersTabPremiumShow}'
+        icon-clip: 60 0 20 20
+        @onClick: GamePowers.onClickFilterPremium(self)
+
+        $on:
+          !tooltip: loc'${GamePowersTabPremiumHide}'
+          icon-clip: 60 20 20 20
+
+  MiniWindowContents
+
+    Panel
+      id: powersPanel
+      focusable: false
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      padding: 4
+      layout:
+        type: verticalBox
+        fit-children: true

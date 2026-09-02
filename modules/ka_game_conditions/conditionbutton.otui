@@ -1,0 +1,66 @@
+ConditionButton < UIConditionButton
+  margin-bottom: 5
+  &isConditionButton: true
+
+  $on:
+    height: 20
+    visible: true
+
+  $!on:
+    height: 0
+    visible: false
+
+  UIItem
+    id: conditionItemIcon
+    size: 20 20
+    padding: 2
+    anchors.top: parent.top
+    anchors.left: parent.left
+    phantom: true
+    virtual: true
+
+  UIWidget
+    id: conditionPowerIcon
+    size: 20 20
+    anchors.top: parent.top
+    anchors.left: prev.right
+    phantom: true
+    icon-size: 16 16
+    icon-offset: 2 2
+
+  UIWidget
+    id: conditionType
+    size: 11 11
+    anchors.top: parent.top
+    anchors.right: parent.right
+    phantom: true
+
+  Label
+    id: conditionClock
+    anchors.top: parent.top
+    anchors.right: conditionType.outsideLeft
+    margin-left: 2
+    margin-right: 2
+    text-auto-resize: true
+    color: #888888
+    phantom: true
+
+  ColorProgressBar
+    id: conditionBar
+    height: 5
+    anchors.top: conditionClock.outsideBottom
+    anchors.left: conditionPowerIcon.outsideRight
+    anchors.right: parent.right
+    margin-top: 1
+    margin-left: 2
+    phantom: true
+
+  Label
+    id: conditionAuxiliar
+    anchors.top: parent.top
+    anchors.left: conditionPowerIcon.outsideRight
+    anchors.right: conditionClock.outsideLeft
+    margin-left: 2
+    margin-right: 2
+    text-align: left
+    phantom: true

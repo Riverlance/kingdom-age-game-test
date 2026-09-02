@@ -1,0 +1,301 @@
+ConsoleLabel < UITextEdit
+  font: verdana-11px-antialised
+  height: 14
+  color: yellow
+  margin-left: 2
+  text-wrap: true
+  text-auto-resize: true
+  selection-color: #111416
+  selection-background-color: #999999
+  change-cursor-image: false
+  cursor-visible: false
+  editable: false
+  draggable: true
+  selectable: false
+  focusable: false
+
+ConsolePhantomLabel < UILabel
+  font: verdana-11px-antialised
+  height: 14
+  color: yellow
+  text-wrap: true
+  text-auto-resize: true
+  selection-color: #111416
+  selection-background-color: #999999
+
+ConsoleTabBar < MoveableTabBar
+  height: 28
+
+ConsoleTabBarPanel < MoveableTabBarPanel
+  id: consoleTab
+
+  ScrollablePanel
+    id: consoleBuffer
+    anchors.fill: parent
+    margin-right: 12
+    vertical-scrollbar: consoleScrollBar
+    layout:
+      type: verticalBox
+      align-bottom: true
+    inverted-scroll: true
+    padding: 1
+
+  VerticalScrollBar
+    id: consoleScrollBar
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    step: 14
+    pixels-scroll: true
+
+ConsoleTabBarButton < MoveableTabBarButton
+  &minWidth: 135
+  height: 28
+  padding: 5
+  font: sans-11px
+
+Panel
+  id: consolePanel
+  anchors.fill: parent
+  padding: 7
+  image-source: /images/ui/_background/frame_alpha
+  image-border: 7
+  phantom: false
+
+  Panel
+    id: headerPanel
+    height: 29
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-bottom: 1
+    image-source: /images/ui/_background/default_stone_grey
+    image-repeated: true
+    border-width-top: 1
+    border-color-top: #101010
+    border-width-bottom: 1
+    border-color-bottom: #98885e
+    focusable: false
+
+    Button
+      id: prevChannelButton
+      size: 22 22
+      icon: /images/ui/console/left_arrow
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.left: parent.left
+      margin-bottom: 1
+
+    ConsoleTabBar
+      id: consoleTabBar
+      anchors.bottom: parent.bottom
+      anchors.left: prev.right
+      anchors.right: next.left
+      margin-left: 3
+      margin-right: 3
+      tab-spacing: 0
+      movable: true
+
+    Button
+      id: nextChannelButton
+      size: 22 22
+      icon: /images/ui/console/right_arrow
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.right: next.left
+      margin-bottom: 1
+      margin-right: 3
+
+    Button
+      id: closeChannelButton
+      size: 22 22
+      !tooltip: f(loc'${GameConsoleCloseChannel}', "(Ctrl+E)")
+      icon: /images/ui/console/close_channel
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.right: next.left
+      margin-bottom: 1
+      margin-right: 3
+      enabled: false
+      @onClick: GameConsole.removeCurrentTab()
+
+    Button
+      id: clearChannelButton
+      size: 22 22
+      &loct: '${GameConsoleClearCurrentWindow}'
+      icon: /images/ui/console/clear_channel
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.right: next.left
+      margin-bottom: 1
+      margin-right: 3
+      @onClick: |
+        local consoleTabBar = GameConsole.getHeaderPanel():getChildById('consoleTabBar')
+        GameConsole.clearChannel(consoleTabBar)
+
+    Button
+      id: channelsButton
+      size: 22 22
+      !tooltip: f(loc'${GameConsoleNewChannel}', "(Ctrl+O)")
+      icon: /images/ui/console/new_channel
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.right: next.left
+      margin-bottom: 1
+      margin-right: 3
+      @onClick: g_game.requestChannels()
+
+    Button
+      id: ignoreButton
+      size: 22 22
+      &loct: '${GameConsoleIgnorePlayers}'
+      icon: /images/ui/console/ignore
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.right: cloneTabSeparator.outsideLeft
+      margin-bottom: 1
+      @onClick: GameConsole.onClickIgnoreButton()
+
+    VerticalSeparator
+      id: cloneTabSeparator
+      anchors.top: parent.top
+      anchors.bottom: parent.bottom
+      anchors.right: cloneTabTipArea.left
+      margin-right: 0
+
+      $on:
+        anchors.right: cloneTabBar.left
+        margin-right: 1
+
+    UIWidget
+      id: cloneTabTipArea
+      &loct: '${GameConsoleCloneTabTip}'
+      width: 95
+      image-source: /images/ui/_background/default_stone_blue
+      image-repeated: true
+      icon-source: /images/ui/console/clone_tab_area
+      icon-align: bottom
+      anchors.top: parent.top
+      anchors.bottom: parent.bottom
+      anchors.right: parent.right
+      border-width-left: 1
+      border-color-left: #98885e
+      visible: true
+
+      $on:
+        visible: false
+
+    ConsoleTabBar
+      id: cloneTabBar
+      anchors.bottom: parent.bottom
+      anchors.right: parent.right
+      width: 0
+      // To force be above the border at right
+      margin-right: -1
+      tab-spacing: 0
+      movable: true
+
+  Panel
+    id: contentPanel
+    anchors.top: headerPanel.bottom
+    anchors.bottom: footerPanel.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 1
+    margin-bottom: 1
+    focusable: false
+
+    // Archors are updated at modules.ka_game_emotes
+
+    Panel
+      id: consoleContentPanel
+      // Do not use anchors.fill here because we edit anchors.right at $on
+      anchors.top: parent.top
+      anchors.bottom: parent.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-top: 1
+      margin-bottom: 1
+      margin-right: 0
+      border-width: 1
+      border-color: #98885e
+      padding: 1
+      focusable: false
+
+      $on:
+        anchors.right: clonedSplitter.left
+
+    Panel
+      id: cloneContentPanel
+      anchors.top: parent.top
+      anchors.bottom: parent.bottom
+      anchors.left: next.right
+      anchors.right: parent.right
+      margin-top: 1
+      margin-bottom: 1
+      border-width: 1
+      border-color: #98885e
+      padding: 1
+      focusable: false
+
+    Splitter
+      id: clonedSplitter
+      width: 4
+      visible: false
+      anchors.top: parent.top
+      anchors.bottom: parent.bottom
+      anchors.right: parent.right
+      // Save value as margin-right
+      &defaultMargin: 250
+
+      @canUpdateMargin: |
+        function(self, newMargin)
+          return math.max(math.min(newMargin, self:getParent():getWidth() - self.defaultMargin), self.defaultMargin)
+        end
+
+      @onGeometryChange: |
+        function(self)
+          self:setMarginRight(math.min(math.max(self:getParent():getWidth() - self.defaultMargin, self.defaultMargin), self:getMarginRight()))
+        end
+
+      $hidden:
+        width: 0
+
+  Panel
+    id: footerPanel
+    height: 24
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 1
+    image-source: /images/ui/_background/default_stone_grey
+    image-repeated: true
+    border-width-top: 1
+    border-color-top: #98885e
+    border-width-bottom: 1
+    border-color-bottom: #101010
+
+    Button
+      id: sayModeButton
+      &loct: '${GameConsoleMsgVolume}'
+      size: 20 20
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.left: parent.left
+      icon: /images/ui/console/say
+      &sayMode: 2
+      @onClick: GameConsole.sayModeChange()
+
+    Button
+      id: toggleChat
+      size: 22 22
+      // Do not use as &loct here, or it will keep always with tooltip of GameConsoleChatDisable, but never of GameConsoleChatEnable
+      !tooltip: loc'${GameConsoleChatDisable}'
+      icon: /images/ui/console/chat
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.right: parent.right
+      margin-right: 1
+      @onClick: ClientOptions.setOption('enableChat', not ClientOptions.getOption('enableChat'))
+
+    TextEdit
+      id: consoleTextEdit
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.left: sayModeButton.right
+      anchors.right: toggleChat.left
+      margin-left: 3
+      margin-right: 3
+      shift-navigation: true
+      max-length: 255

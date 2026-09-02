@@ -1,0 +1,326 @@
+NPCOfferLabel < Label
+  anchors.left: prev.right
+  anchors.right: parent.right
+  anchors.top: prev.top
+  margin-left: 5
+  margin-right: 5
+  text-auto-resize: false
+
+NPCItemBox < Panel
+  UICheckBox
+    id: itemBox
+    anchors.fill: parent
+    border-width: 1
+    color: #aaaaaa
+    text-align: bottom
+    text-offset: 0 -4
+    @onCheckChange: GameNpcTrade.onItemBoxChecked(self)
+
+    Creature
+      id: outfit
+      size: 64 64
+      phantom: true
+      anchors.top: parent.top
+      anchors.horizontalCenter: parent.horizontalCenter
+      creature-size: 97
+      image-source: none
+      image-color: #ffffffff
+
+      $!on:
+        image-color: #ffffff88
+
+    Item
+      id: item
+      virtual: true
+      anchors.verticalCenter: prev.verticalCenter
+      anchors.horizontalCenter: parent.horizontalCenter
+      image-color: #ffffffff
+
+      $!on:
+        image-color: #ffffff88
+
+    $checked on:
+      border-color: #faebd5
+
+    $!checked:
+      border-color: #7b6e4c
+
+    $!on:
+      border-color: #7b6e4c88
+      image-color: #ffffff88
+      color: #aaaaaa88
+
+MainWindow
+  id: npcWindow
+  &loc: '${GameNpcTradeNpcWindowTitle}'
+  size: 600 620
+  @onEscape: GameNpcTrade.closeNpcTrade()
+
+  Button
+    &loc: '${CorelibInfoClose}'
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: GameNpcTrade.closeNpcTrade()
+
+  Button
+    id: tradeButton
+    &loc: '${GameNpcTradeButtonTrade}'
+    anchors.right: prev.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+    @onClick: GameNpcTrade.onTradeClick()
+
+  Button
+    id: sellAllButton
+    &loc: '${GameNpcTradeButtonSellAll}'
+    width: 120
+    anchors.right: prev.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+    visible: false
+    @onClick: GameNpcTrade.sellAll()
+
+  LightFlatPanel
+    id: buyOptions
+    width: 200
+    height: 144
+    anchors.bottom: prev.top
+    anchors.right: parent.right
+    margin-bottom: 10
+
+    Label
+      id: searchLabel
+      &loc: '${GameNpcTradeSearchLabel}:'
+      anchors.left: parent.left
+      anchors.top: parent.top
+      text-auto-resize: true
+      margin-top: 7
+      margin-left: 5
+
+    TextEdit
+      id: searchText
+      anchors.top: prev.top
+      anchors.left: prev.right
+      anchors.right: parent.right
+      margin-top: -2
+      margin-left: 5
+      margin-right: 5
+      @onTextChange: GameNpcTrade.onSearchTextChange()
+
+    CheckBox
+      id: bankTrade
+      &loc: '${GameNpcTradeBankTrade}'
+      anchors.top: prev.outsideBottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-left: 5
+      margin-top: 10
+      @onCheckChange: GameNpcTrade.onBankTradeChange()
+
+    CheckBox
+      id: buyWithBackpack
+      &loc: '${GameNpcTradeBuyWithBackpack}'
+      anchors.top: bankTrade.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-left: 5
+      margin-top: 3
+      @onCheckChange: GameNpcTrade.onBuyWithBackpackChange()
+
+    CheckBox
+      id: ignoreCapacity
+      &loc: '${GameNpcTradeIgnoreCapacity}'
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-left: 5
+      margin-top: 3
+      @onCheckChange: GameNpcTrade.onIgnoreCapacityChange()
+
+    CheckBox
+      id: showAllItems
+      &loc: '${GameNpcTradeShowAllItems}'
+      anchors.top: bankTrade.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-left: 5
+      margin-top: 3
+      visible: false
+      checked: true
+      @onCheckChange: GameNpcTrade.onShowAllItemsChange()
+
+  LightFlatPanel
+    id: setupPanel
+    enabled: false
+    anchors.top: prev.top
+    anchors.bottom: prev.bottom
+    anchors.left: parent.left
+    anchors.right: prev.outsideLeft
+    margin-right: 5
+
+    Label
+      phantom: false
+      id: nameDesc
+      &loc: '${CorelibInfoName}:'
+      &loct: '${GameNpcTradeNameDescTooltip}'
+      anchors.left: parent.left
+      anchors.top: parent.top
+      margin-top: 5
+      margin-left: 5
+      width: 100
+
+    NPCOfferLabel
+      id: name
+
+    Label
+      phantom: false
+      id: priceDesc
+      &loc: '${GameNpcTradePriceDesc}:'
+      &loct: '${GameNpcTradePriceDescTooltip}'
+      anchors.top: prev.bottom
+      anchors.left: nameDesc.left
+      anchors.right: nameDesc.right
+      margin-top: 3
+
+    NPCOfferLabel
+      id: price
+
+    Label
+      phantom: false
+      id: weightDesc
+      &loc: '${GameNpcTradeWeightDesc}:'
+      &loct: '${GameNpcTradeWeightDescTooltip}'
+      anchors.top: prev.bottom
+      anchors.left: priceDesc.left
+      anchors.right: priceDesc.right
+      margin-top: 3
+
+    NPCOfferLabel
+      id: weight
+
+    Label
+      phantom: false
+      id: moneyDesc
+      &loc: '${GameNpcTradeMoneyDesc}:'
+      &loct: '${GameNpcTradeMoneyDescTooltip}'
+      anchors.top: prev.bottom
+      anchors.left: weightDesc.left
+      anchors.right: weightDesc.right
+      margin-top: 10
+
+    NPCOfferLabel
+      id: money
+      phantom: false
+
+    Label
+      phantom: false
+      id: kapsDesc
+      &loc: '${GameNpcTradeKapsDesc}:'
+      &loct: '${GameNpcTradeKapsDescTooltip}'
+      anchors.top: prev.bottom
+      anchors.left: moneyDesc.left
+      anchors.right: moneyDesc.right
+      margin-top: 3
+
+    NPCOfferLabel
+      id: kaps
+      phantom: false
+
+    Label
+      phantom: false
+      id: capacityDesc
+      &loc: '${GameNpcTradeCapacityDesc}:'
+      &loct: '${GameNpcTradeCapacityDescTooltip}'
+      anchors.top: prev.bottom
+      anchors.left: kapsDesc.left
+      anchors.right: kapsDesc.right
+      margin-top: 3
+
+    NPCOfferLabel
+      id: capacity
+
+    Label
+      phantom: false
+      id: trustDesc
+      &loc: '${GameNpcTradeTrustDesc}:'
+      &loct: '${GameNpcTradeTrustDescTooltip}'
+      anchors.top: prev.bottom
+      anchors.left: capacityDesc.left
+      anchors.right: capacityDesc.right
+      margin-top: 3
+
+    NPCOfferLabel
+      id: trust
+      phantom: false
+
+    HorizontalScrollBar
+      id: quantityScroll
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      margin-bottom: 5
+      margin-left: 5
+      margin-right: 5
+      show-value: true
+      minimum: 1
+      maximum: 100
+      step: 1
+      @onValueChange: GameNpcTrade.onQuantityValueChange(self:getValue())
+
+  TabButton
+    id: buyTab
+    &loc: '${GameNpcTradeTabBuy}'
+    &loct: '${GameNpcTradeTabBuyTooltip}'
+    checked: true
+    on: true
+    anchors.left: parent.left
+    anchors.right: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-right: 4
+    margin-top: 4
+
+  TabButton
+    id: sellTab
+    &loc: '${GameNpcTradeTabSell}'
+    &loct: '${GameNpcTradeTabSellTooltip}'
+    anchors.left: parent.horizontalCenter
+    anchors.right: parent.right
+    anchors.top: parent.top
+    margin-left: 4
+    margin-top: 4
+
+  LightFlatPanel
+    id: itemsArea
+    anchors.top: prev.bottom
+    anchors.bottom: setupPanel.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-bottom: 6
+    padding-top: 4
+    padding-left: 4
+    padding-bottom: 4
+    padding-right: 4
+
+    VerticalScrollBar
+      id: itemsPanelListScrollBar
+      anchors.top: parent.top
+      anchors.bottom: parent.bottom
+      anchors.right: parent.right
+      step: 24
+      pixels-scroll: true
+
+    ScrollablePanel
+      id: itemsPanel
+      height: 250
+      anchors.left: parent.left
+      anchors.right: prev.left
+      anchors.top: parent.top
+      anchors.bottom: parent.bottom
+      vertical-scrollbar: itemsPanelListScrollBar
+      margin-left: 1
+      margin-right: 4
+      layout:
+        type: grid
+        cell-size: 180 114
+        flow: true
+        auto-spacing: true

@@ -1,0 +1,91 @@
+SkillFirstWidget < UIWidget
+
+SkillButton < UIButton
+  height: 21
+  margin-bottom: 2
+  &onClick: onSkillButtonClick
+
+SmallSkillButton < SkillButton
+  height: 14
+
+SkillNameLabel < GameLabel
+  font: verdana-11px-monochrome
+  anchors.left: parent.left
+  anchors.top: parent.top
+  anchors.bottom: parent.bottom
+
+SkillValueLabel < GameLabel
+  id: value
+  font: verdana-11px-monochrome
+  text-align: topright
+  anchors.right: parent.right
+  anchors.top: parent.top
+  anchors.bottom: parent.bottom
+  anchors.left: prev.left
+
+SkillPercentPanel < ProgressBar
+  id: percent
+  background-color: green
+  height: 5
+  margin-top: 15
+  anchors.left: parent.left
+  anchors.right: parent.right
+  anchors.top: parent.top
+  phantom: false
+
+MiniWindow
+  id: skillWindow
+  &loc: '${CorelibSkillsWindowTitle}'
+  icon: /images/ui/top_menu/skills
+  &save: true
+  &contentMinimumHeight: 40
+  &contentMaximumHeight: 119
+
+  MiniWindowContents
+    padding: 4
+    layout: verticalBox
+
+    SkillButton
+      id: level
+      SkillNameLabel
+        &loc: '${CorelibInfoLevel}'
+      SkillValueLabel
+      SkillPercentPanel
+        background-color: green
+
+    SkillButton
+      margin-top: 5
+      id: experience
+      height: 15
+      SkillNameLabel
+        &loc: '${GameSkillsInfoXP}'
+      SkillValueLabel
+
+    SkillButton
+      id: speed
+      height: 15
+      SkillNameLabel
+        &loc: '${GameSkillsInfoSpeed}'
+      SkillValueLabel
+
+    SkillButton
+      id: focusPoints
+      height: 15
+      SkillNameLabel
+        &loc: '${GameSkillsInfoFocusPoints}'
+      SkillValueLabel
+
+    SkillButton
+      id: regenerationTime
+      height: 15
+      SkillNameLabel
+        &loc: '${GameSkillsInfoFeedTime}'
+      SkillValueLabel
+
+    SkillButton
+      id: stamina
+      SkillNameLabel
+        &loc: '${GameSkillsInfoStamina}'
+      SkillValueLabel
+      SkillPercentPanel
+        background-color: orange

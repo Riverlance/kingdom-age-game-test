@@ -1,0 +1,160 @@
+QuestLabel < Label
+  font: verdana-11px-monochrome
+  background-color: alpha
+  text-auto-resize: true
+  text-offset: 2 0
+  focusable: true
+  border-width: 1
+  border-color: alpha
+  color: #c9bdab
+
+  $on:
+    color: #007700
+  $!on:
+    color: #c9bdab
+
+  $focus:
+    border-color: #98885e
+    background-color: #cccccc44
+
+  $on focus:
+    color: #00ff00
+  $!on focus:
+    color: #ffffff
+
+QuestDataLabel < Label
+  font: verdana-11px-monochrome
+  background-color: alpha
+  text-auto-resize: true
+  text-offset: 2 0
+  // color: #e6db74 // Updated on Lua
+  margin-right: 3
+
+QuestLogWindow < MainWindow
+  id: questLogWindow
+  &loc: '${GameQuestLogWindowTitle}'
+  size: 500 400
+  @onEscape: |
+    GameQuestLog.hide()
+
+  VerticalScrollBar
+    id: questListScrollBar
+    anchors.top: parent.top
+    anchors.bottom: rewardsLabel.top
+    anchors.right: parent.right
+    margin-bottom: 10
+    step: 14
+    pixels-scroll: true
+
+  TextList
+    id: questList
+    vertical-scrollbar: questListScrollBar
+    anchors.top: questListScrollBar.top
+    anchors.bottom: questListScrollBar.bottom
+    anchors.left: parent.left
+    anchors.right: questListScrollBar.left
+    focusable: false
+
+  Label
+    id: rewardsLabel
+    &loc: '${GameQuestLogRewardsLabel}:'
+    anchors.bottom: rewardExperienceLabel.top
+    anchors.left: parent.left
+    margin-bottom: 5
+    visible: false
+
+  Label
+    id: rewardExperienceLabel
+    image-source: /images/ui/quest_log/reward_experience
+    anchors.bottom: rewardMoneyLabel.top
+    anchors.left: parent.left
+    margin-bottom: 5
+    width: 32
+    height: 32
+    visible: false
+
+  Label
+    id: rewardExperienceValueLabel
+    font: delitschantiqua-20px
+    anchors.top: prev.top
+    anchors.left: rewardExperienceLabel.right
+    anchors.right: parent.horizontalCenter
+    margin-left: 5
+    height: 32
+    visible: false
+
+  Label
+    id: rewardMoneyLabel
+    image-source: /images/ui/quest_log/reward_money
+    anchors.bottom: closeButton.top
+    anchors.left: parent.left
+    margin-bottom: 5
+    width: 32
+    height: 32
+    visible: false
+
+  Label
+    id: rewardMoneyValueLabel
+    font: delitschantiqua-20px
+    anchors.top: prev.top
+    anchors.left: rewardMoneyLabel.right
+    anchors.right: parent.horizontalCenter
+    margin-left: 5
+    height: 32
+    visible: false
+
+  Button
+    id: itemsButton
+    &loc: '${GameQuestLogItemsButton}'
+    &loct: '${GameQuestLogItemsButtonTooltip}'
+    anchors.top: rewardExperienceLabel.top
+    anchors.right: parent.right
+    width: 80
+    visible: false
+
+  MultilineTextEdit
+    id: otherRewards
+    vertical-scrollbar: otherRewardsScrollBar
+    anchors.top: itemsButton.bottom
+    anchors.right: otherRewardsScrollBar.left
+    anchors.left: parent.horizontalCenter
+    anchors.bottom: closeButton.top
+    margin-top: 5
+    margin-bottom: 5
+    font: sans-11px
+    color: #aaaaaa
+    text-offset: 2 3
+    padding-bottom: 5
+    text-wrap: true
+    focusable: false
+    editable: false
+    visible: false
+
+  VerticalScrollBar
+    id: otherRewardsScrollBar
+    anchors.top: itemsButton.bottom
+    anchors.bottom: closeButton.top
+    anchors.right: parent.right
+    margin-top: 5
+    margin-bottom: 5
+    step: 50
+    pixels-scroll: true
+    visible: false
+
+  Button
+    id: teleportButton
+    &loc: '${GameQuestLogTeleportButton}'
+    anchors.top: closeButton.top
+    anchors.right: closeButton.left
+    margin-right: 5
+    width: 80
+    visible: false
+
+  Button
+    id: closeButton
+    &loc: '${CorelibInfoClose}'
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    width: 80
+    @onClick: |
+      GameQuestLog.hide()

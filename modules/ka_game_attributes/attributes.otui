@@ -1,0 +1,220 @@
+AttributeAddButton < UIButton
+  &loct: '${GameAttributesButtonAddTooltip}'
+  anchors.top: parent.top
+  anchors.horizontalCenter: parent.horizontalCenter
+  margin-top: 4
+  size: 14 14
+  image-source: /images/ui/_button/mini_window
+  image-clip: 14 0 14 14
+
+  $hover:
+    image-clip: 14 14 14 14
+
+  $pressed:
+    image-clip: 14 28 14 14
+
+  $!first:
+    anchors.top: prev.outsideBottom
+
+AttributeLabel < Label
+  anchors.left: parent.left
+  margin-left: 4
+  phantom: false
+
+AttributeActLabel < Label
+  text-align: right
+  anchors.right: parent.right
+  margin-right: 4
+  phantom: false
+
+MiniWindow
+  icon: /images/ui/top_menu/attributes
+  id: attributeWindow
+  &loc: '${GameAttributesWindowTitle}'
+  &defaultHeight: 235
+  &save: true
+
+  InfoMenuButton
+    &loct: '${GameAttributesButtonInfoTooltip}'
+    !tooltip-type: TooltipType.textBlock
+    anchors.verticalCenter: lockButton.verticalCenter
+    anchors.right: lockButton.outsideLeft
+
+
+
+  MiniWindowHeader
+    height: 20
+
+    Label
+      id: labelAttribute
+      &loc: '${GameAttributesLabelAttribute}'
+      text-align: left
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.left: parent.left
+      margin-left: 4
+      phantom: false
+
+    Label
+      id: labelAct
+      &loc: '${GameAttributesLabelAct}'
+      &loct: '${GameAttributesLabelActTooltip}'
+      text-align: right
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.right: parent.right
+      margin-right: 4
+      phantom: false
+
+
+
+  MiniWindowContents
+
+    AttributeAddButton
+      id: attackAttributeAddButton
+
+    AttributeAddButton
+      id: defenseAttributeAddButton
+
+    AttributeAddButton
+      id: magicDefenseAttributeAddButton
+
+    AttributeAddButton
+      id: vitalityAttributeAddButton
+
+    AttributeAddButton
+      id: willPowerAttributeAddButton
+
+    AttributeAddButton
+      id: agilityAttributeAddButton
+
+    AttributeAddButton
+      id: dodgeAttributeAddButton
+
+    AttributeAddButton
+      id: walkingAttributeAddButton
+
+    AttributeAddButton
+      id: luckAttributeAddButton
+
+
+
+    AttributeLabel
+      id: attackAttributeLabel
+      &loc: '${GameAttributesAttackAttributeLabel}'
+      anchors.verticalCenter: attackAttributeAddButton.verticalCenter
+      anchors.right: attackAttributeAddButton.left
+
+    AttributeLabel
+      id: defenseAttributeLabel
+      &loc: '${GameAttributesDefenseAttributeLabel}'
+      anchors.verticalCenter: defenseAttributeAddButton.verticalCenter
+      anchors.right: defenseAttributeAddButton.left
+
+    AttributeLabel
+      id: magicDefenseAttributeLabel
+      &loc: '${GameAttributesMagicDefenseAttributeLabel}'
+      anchors.verticalCenter: magicDefenseAttributeAddButton.verticalCenter
+      anchors.right: magicDefenseAttributeAddButton.left
+
+    AttributeLabel
+      id: vitalityAttributeLabel
+      &loc: '${GameAttributesVitalityAttributeLabel}'
+      anchors.verticalCenter: vitalityAttributeAddButton.verticalCenter
+      anchors.right: vitalityAttributeAddButton.left
+
+    AttributeLabel
+      id: willPowerAttributeLabel
+      &loc: '${GameAttributesWillPowerAttributeLabel}'
+      anchors.verticalCenter: willPowerAttributeAddButton.verticalCenter
+      anchors.right: willPowerAttributeAddButton.left
+
+    AttributeLabel
+      id: agilityAttributeLabel
+      &loc: '${GameAttributesAgilityAttributeLabel}'
+      anchors.verticalCenter: agilityAttributeAddButton.verticalCenter
+      anchors.right: agilityAttributeAddButton.left
+
+    AttributeLabel
+      id: dodgeAttributeLabel
+      &loc: '${GameAttributesDodgeAttributeLabel}'
+      anchors.verticalCenter: dodgeAttributeAddButton.verticalCenter
+      anchors.right: dodgeAttributeAddButton.left
+
+    AttributeLabel
+      id: walkingAttributeLabel
+      &loc: '${GameAttributesWalkingAttributeLabel}'
+      anchors.verticalCenter: walkingAttributeAddButton.verticalCenter
+      anchors.right: walkingAttributeAddButton.left
+
+    AttributeLabel
+      id: luckAttributeLabel
+      &loc: '${GameAttributesLuckAttributeLabel}'
+      anchors.verticalCenter: luckAttributeAddButton.verticalCenter
+      anchors.right: luckAttributeAddButton.left
+
+
+
+    AttributeActLabel
+      id: attackAttributeActLabel
+      anchors.verticalCenter: attackAttributeAddButton.verticalCenter
+      anchors.left: attackAttributeAddButton.right
+
+    AttributeActLabel
+      id: defenseAttributeActLabel
+      anchors.verticalCenter: defenseAttributeAddButton.verticalCenter
+      anchors.left: defenseAttributeAddButton.right
+
+    AttributeActLabel
+      id: magicDefenseAttributeActLabel
+      anchors.verticalCenter: magicDefenseAttributeAddButton.verticalCenter
+      anchors.left: magicDefenseAttributeAddButton.right
+
+    AttributeActLabel
+      id: vitalityAttributeActLabel
+      anchors.verticalCenter: vitalityAttributeAddButton.verticalCenter
+      anchors.left: vitalityAttributeAddButton.right
+
+    AttributeActLabel
+      id: willPowerAttributeActLabel
+      anchors.verticalCenter: willPowerAttributeAddButton.verticalCenter
+      anchors.left: willPowerAttributeAddButton.right
+
+    AttributeActLabel
+      id: agilityAttributeActLabel
+      anchors.verticalCenter: agilityAttributeAddButton.verticalCenter
+      anchors.left: agilityAttributeAddButton.right
+
+    AttributeActLabel
+      id: dodgeAttributeActLabel
+      anchors.verticalCenter: dodgeAttributeAddButton.verticalCenter
+      anchors.left: dodgeAttributeAddButton.right
+
+    AttributeActLabel
+      id: walkingAttributeActLabel
+      anchors.verticalCenter: walkingAttributeAddButton.verticalCenter
+      anchors.left: walkingAttributeAddButton.right
+
+    AttributeActLabel
+      id: luckAttributeActLabel
+      anchors.verticalCenter: luckAttributeAddButton.verticalCenter
+      anchors.left: luckAttributeAddButton.right
+
+
+
+  MiniWindowFooter
+    height: 20
+
+    Label
+      id: availablePointsLabel
+      text-auto-resize: true
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.left: parent.left
+      margin-left: 4
+      phantom: false
+
+    Label
+      id: pointsCostLabel
+      text-auto-resize: true
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.right: parent.right
+      margin-right: 4
+      phantom: false

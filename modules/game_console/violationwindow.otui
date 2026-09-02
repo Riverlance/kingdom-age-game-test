@@ -1,0 +1,40 @@
+MainWindow
+  id: ignoreWindow
+  &loc: '${GameConsoleIgnoreWindow}'
+  size: 300 240
+
+  Label
+    &loc: '${GameConsoleRuleViolationSentence}'
+    text-wrap: true
+    text-auto-resize: true
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: parent.top
+
+  TextEdit
+    id: text
+    text-wrap: true
+    multiline: true
+    anchors.top: prev.bottom
+    anchors.bottom: next.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin: 8 0
+    max-length: 255
+
+  Button
+    id: buttonOk
+    &loc: '${CorelibInfoOk}'
+    width: 64
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+    @onClick: self:getParent():onEnter()
+
+  Button
+    id: buttonCancel
+    &loc: '${CorelibInfoCancel}'
+    width: 64
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: self:getParent():onEscape()

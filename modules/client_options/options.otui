@@ -1,0 +1,124 @@
+OptionLabel < Label
+  anchors.left: parent.left
+  anchors.right: parent.right
+  color: #c9bdab
+  phantom: false
+
+  $first:
+    anchors.top: parent.top
+
+  $!first:
+    anchors.top: prev.outsideBottom
+    margin-top: 10
+
+OptionScrollbar < HorizontalScrollBar
+  anchors.left: parent.left
+  anchors.right: parent.right
+  step: 1
+  show-value: true
+  mouse-scroll: false
+  @onValueChange: ClientOptions.setOption(self:getId(), self:getValue())
+
+  $first:
+    anchors.top: parent.top
+
+  $!first:
+    anchors.top: prev.outsideBottom
+    margin-top: 2
+
+OptionComboBox < ComboBox
+  anchors.left: parent.left
+  anchors.right: parent.right
+  mouse-scroll: false
+
+OptionCheckBox < CheckBox
+  height: 16
+  anchors.left: parent.left
+  anchors.right: parent.right
+  @onCheckChange: ClientOptions.setOption(self:getId(), self:isChecked())
+
+  $first:
+    anchors.top: parent.top
+
+  $!first:
+    anchors.top: prev.outsideBottom
+    margin-top: 2
+
+OptionButtonBox < ButtonBoxRounded
+  anchors.top: prev.top
+  anchors.left: prev.outsideRight
+  margin-left: 2
+  padding: 5 10 5 10
+  text-auto-resize: true
+
+FirstOptionButtonBox < OptionButtonBox
+  anchors.top: prev.outsideBottom
+  anchors.left: prev.left
+  margin-top: 2
+  margin-left: 0
+
+OptionButton < Button
+  anchors.left: parent.left
+  text-auto-resize: true
+  @onClick: ClientOptions.setOption(self:getId(), true)
+  padding: 7 14 7 14
+
+  $first:
+    anchors.top: parent.top
+
+  $!first:
+    anchors.top: prev.outsideBottom
+    margin-top: 2
+
+OptionHorizontalSeparator < HorizontalSeparator
+  anchors.top: prev.outsideBottom
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-top: 10
+
+
+
+MainWindow
+  id: optionsWindow
+  &loc: '${ClientOptionsTitle}'
+  size: 700 450
+  &save: true
+
+  @onEnter: ClientOptions.hide()
+  @onEscape: ClientOptions.hide()
+
+  TabBarVertical
+    id: optionsTabBar
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    width: 100
+    step: 10
+
+  VerticalScrollBar
+    id: optionsTabContentScrollBar
+    anchors.top: parent.top
+    anchors.right: parent.right
+    anchors.bottom: okButton.outsideTop
+    margin-bottom: 10
+    step: 20
+    pixels-scroll: true
+
+  ScrollablePanel
+    id: optionsTabContent
+    anchors.top: parent.top
+    anchors.left: optionsTabBar.outsideRight
+    anchors.right: optionsTabContentScrollBar.left
+    anchors.bottom: okButton.outsideTop
+    margin-bottom: 10
+    margin-left: 10
+    margin-right: 4
+    vertical-scrollbar: optionsTabContentScrollBar
+
+  Button
+    id: okButton
+    &loc: '${CorelibInfoOk}'
+    width: 64
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    @onClick: ClientOptions.hide()

@@ -1,0 +1,7 @@
+LevelUpPanel < UIWidget
+  id: levelUpPanel
+  anchors.top: gameScreenArea.top
+  anchors.horizontalCenter: gameScreenArea.horizontalCenter
+  image-auto-resize: true
+  focusable: false
+  phantom: true

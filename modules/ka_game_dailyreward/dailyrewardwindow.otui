@@ -1,0 +1,159 @@
+RewardItem < UIWidget
+  anchors.top: prev.top
+  anchors.left: parent.left
+  //image-source: /images/ui/slot/item
+  size: 58 34
+
+  UIWidget
+    id: arrow
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.right: parent.left
+    size: 12 21
+    image-source: /images/ui/_button/arrow_horizontal
+    image-clip: 12 0 12 21
+    image-color: #ffffff
+    margin-right: 0
+
+  Item
+    id: item
+    virtual: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+
+    $on:
+      image-source: /images/ui/slot/item_blessed
+
+  UIWidget
+    id: blueLabel
+    image-source: /images/ui/slot/blue_label_ne
+    anchors.verticalCenter: prev.verticalCenter
+    anchors.horizontalCenter: prev.horizontalCenter
+    opacity: 0.5
+    padding-right: 5
+    text-align: topRight
+
+  UIWidget
+    id: icon
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+    phantom: true
+    image-source: /images/ui/icon_lock
+
+    $on:
+      image-source: /images/ui/icon_check
+
+RewardProgressBar < ProgressBar
+  anchors.top: prev.outsideBottom
+  anchors.left: parent.left
+  anchors.right: parent.right
+  phases: 7
+  background-color: darkGreen
+  phases-border-color: #ffffff88
+
+  $first:
+    anchors.top: parent.top
+
+DailyRewardWindow < MainWindow
+  id: dailyRewardWindow
+  &loc: '${GameDailyRewardWindowTitle}'
+  size: 500 280
+
+  @onEscape: |
+    GameDailyReward.hide()
+
+  Label
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    &loc: '${GameDailyRewardInfoRewardsClaim}'
+
+  RewardItem
+    id: rewardItem1
+    anchors.top: prev.outsideBottom
+    margin-top: 10
+    focusable: false
+
+  RewardItem
+    id: rewardItem2
+    focusable: false
+
+  RewardItem
+    id: rewardItem3
+    focusable: false
+
+  RewardItem
+    id: rewardItem4
+    focusable: false
+
+  RewardItem
+    id: rewardItem5
+    focusable: false
+
+  RewardItem
+    id: rewardItem6
+    focusable: false
+
+  RewardItem
+    id: rewardItem7
+    focusable: false
+
+  RewardProgressBar
+    id: claimRewardsBar
+    anchors.top: rewardItem7.outsideBottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 4
+
+  Label
+    id: timeLabel
+    anchors.top: claimRewardsBar.outsideBottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 10
+    text-auto-resize: true
+
+
+  Button
+    id: claimButton
+    anchors.top: prev.outsideBottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 10
+    focusable: false
+    width: 140
+    &loc: '${GameDailyRewardButtonClaim}'
+
+  HorizontalSeparator
+    anchors.top: prev.outsideBottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 10
+
+  Label
+    anchors.top: prev.outsideBottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 10
+    &loc: '${GameDailyRewardInfoWeekBonus}'
+
+  RewardProgressBar
+    id: bonusBar
+    anchors.top: prev.outsideBottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 10
+    background-color: #ddb31c
+    border-width: 1
+    border-color: #ddb31c
+
+  Label
+    id: streakDays
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+
+  Button
+    id: closeButton
+    &loc: '${CorelibInfoClose}'
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    width: 80
+    @onClick: |
+      GameDailyReward.hide()

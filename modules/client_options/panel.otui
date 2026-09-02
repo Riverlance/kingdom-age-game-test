@@ -1,0 +1,67 @@
+Panel
+
+  OptionLabel
+    &loc: '${ClientOptionsSidePanelsPriority}'
+    &loct: '${ClientOptionsSidePanelsPriorityTooltip}'
+    !tooltip-type: TooltipType.textBlock
+
+  FirstOptionButtonBox
+    id: panelsPriorityLeftSide
+    &loc: '${ClientOptionsPanelsPriorityLeftSide}'
+
+  OptionButtonBox
+    id: panelsPriorityRightSide
+    &loc: '${ClientOptionsPanelsPriorityRightSide}'
+
+  OptionHorizontalSeparator
+
+  OptionLabel
+    id: leftStickerLabel
+    &loc: '${ClientOptionsLeftSticker}'
+    anchors.right: parent.horizontalCenter
+    margin-right: 10
+
+  OptionComboBox
+    id: leftSticker
+    anchors.top: prev.outsideBottom
+    anchors.right: prev.right
+    margin-top: 2
+
+  OptionLabel
+    id: leftStickerOpacityLabel
+    anchors.right: prev.right
+    &loc: '${ClientOptionsLeftStickerOpacity}'
+
+  OptionScrollbar
+    id: leftStickerOpacityScrollbar
+    anchors.right: prev.right
+    minimum: 0
+    maximum: 100
+    symbol: %
+
+  OptionLabel
+    id: rightStickerLabel
+    &loc: '${ClientOptionsRightSticker}'
+    $!first:
+      anchors.top: leftStickerLabel.top
+      margin-top: 0
+    anchors.left: parent.horizontalCenter
+    margin-left: 10
+
+  OptionComboBox
+    id: rightSticker
+    anchors.top: prev.outsideBottom
+    anchors.left: prev.left
+    margin-top: 2
+
+  OptionLabel
+    id: rightStickerOpacityLabel
+    anchors.left: prev.left
+    &loc: '${ClientOptionsRightStickerOpacity}'
+
+  OptionScrollbar
+    id: rightStickerOpacityScrollbar
+    anchors.left: prev.left
+    minimum: 0
+    maximum: 100
+    symbol: %

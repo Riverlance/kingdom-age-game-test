@@ -1,0 +1,125 @@
+BattleTabButton < TabButton
+  size: 20 20
+  icon-source: /images/ui/battle_list/filter
+  &loct: '${FilterShow}'
+  @locpar: return { FilterType = self.FilterType }
+  $on:
+    &loct: '${FilterHide}'
+
+MiniWindow
+  id: battleWindow
+  &loc: '${BattleWindowTitle}'
+  icon: /images/ui/top_menu/battle_list
+  &save: true
+  &contentMinimumHeight: 31
+
+  ArrowMenuButton
+    &loct: '${CorelibInfoShowOptions}'
+    anchors.verticalCenter: lockButton.verticalCenter
+    anchors.right: lockButton.outsideLeft
+    @onClick: GameBattleList.onClickArrowMenuButton(self)
+
+    $on:
+      &loct: '${CorelibInfoHideOptions}'
+
+  BallMenuButton
+    id: sortMenuButton
+    @onClick: GameBattleList.createSortMenu()
+
+  InfoMenuButton
+    &loct: '${BattleAutoTargetTooltip}'
+    @locpar: return { NextTargetActionKey = NextTargetActionKey, PrevTargetActionKey = PrevTargetActionKey }
+    !tooltip-type: TooltipType.textBlock
+    anchors.verticalCenter: sortMenuButton.verticalCenter
+    anchors.right: sortMenuButton.outsideLeft
+
+  MiniWindowHeader
+    height: 20
+
+    $on:
+      height: 0
+
+    Panel
+      id: filterPanel
+      size: 152 20
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.horizontalCenter: parent.horizontalCenter
+      layout:
+        type: horizontalBox
+        spacing: 2
+
+      BattleTabButton
+        id: filterPlayers
+        &FilterType: '${FilterPlayers}'
+        icon-clip: 0 0 20 20
+        @onClick: GameBattleList.onClickFilterPlayers(self)
+
+        $on:
+          icon-clip: 0 20 20 20
+
+      BattleTabButton
+        id: filterNPCs
+        &FilterType: '${FilterNPC}'
+        icon-clip: 20 0 20 20
+        @onClick: GameBattleList.onClickFilterNPCs(self)
+
+        $on:
+          icon-clip: 20 20 20 20
+
+      BattleTabButton
+        id: filterMonsters
+        &FilterType: '${FilterMonsters}'
+        icon-clip: 40 0 20 20
+        @onClick: GameBattleList.onClickFilterMonsters(self)
+
+        $on:
+          icon-clip: 40 20 20 20
+
+      BattleTabButton
+        id: filterOwnSummons
+        &FilterType: '${FilterOwnSummons}'
+        icon-clip: 60 0 20 20
+        @onClick: GameBattleList.onClickFilterOwnSummons(self)
+
+        $on:
+          icon-clip: 60 20 20 20
+
+      BattleTabButton
+        id: filterOtherSummons
+        &FilterType: '${FilterOtherSummons}'
+        icon-clip: 80 0 20 20
+        @onClick: GameBattleList.onClickFilterOtherSummons(self)
+
+        $on:
+          icon-clip: 80 20 20 20
+
+      BattleTabButton
+        id: filterNeutral
+        &FilterType: '${FilterNeutralPlayers}'
+        icon-clip: 100 0 20 20
+        @onClick: GameBattleList.onClickFilterNeutral(self)
+
+        $on:
+          icon-clip: 100 20 20 20
+
+      BattleTabButton
+        id: filterParty
+        &FilterType: '${FilterPartyMembers}'
+        icon-clip: 120 0 20 20
+        @onClick: GameBattleList.onClickFilterParty(self)
+
+        $on:
+          icon-clip: 120 20 20 20
+
+  MiniWindowContents
+
+    Panel
+      id: battlePanel
+      focusable: false
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      padding: 4
+      layout:
+        type: verticalBox
+        fit-children: true

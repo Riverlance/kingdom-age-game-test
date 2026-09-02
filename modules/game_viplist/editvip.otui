@@ -1,0 +1,127 @@
+VipListIconButton < ButtonBoxRounded
+  size: 20 20
+  icon-source: /images/ui/vip_list/icons
+  icon-size: 12 12
+  icon-rect: 0 0 12 12
+  icon-clip: 0 0 12 12
+  icon-offset: 4 3
+
+  $first:
+    margin-left: 0
+
+MainWindow
+  size: 218 200
+  &loc: '${GameVipListWindowTitleEdit}'
+
+  Label
+    id: nameLabel
+    text: Name
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    color: green
+
+  Label
+    &loc: '${CorelibInfoDescription}:'
+    height: 22
+    anchors.top: prev.outsideBottom
+    anchors.left: parent.left
+    text-offset: 0 3
+    margin-top: 4
+
+  TextEdit
+    id: descriptionText
+    anchors.top: prev.top
+    anchors.bottom: prev.bottom
+    anchors.left: prev.outsideRight
+    anchors.right: parent.right
+    margin-left: 4
+
+  Label
+    &loc: '${GameVipListInfoNotifyLogin}:'
+    height: 22
+    anchors.top: prev.outsideBottom
+    anchors.left: parent.left
+    text-offset: 0 3
+    margin-top: 4
+
+  CheckBox
+    id: checkBoxNotify
+    anchors.verticalCenter: prev.verticalCenter
+    anchors.left: prev.right
+    margin: 2 6
+
+  UIWidget
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 10
+    height: 42
+    layout: grid
+      spacing: 2
+      cell-size: 20 20
+      num-columns: 10
+
+    VipListIconButton
+      id: icon1
+      icon-clip: 12 0 12 12
+
+    VipListIconButton
+      id: icon2
+      icon-clip: 24 0 12 12
+
+    VipListIconButton
+      id: icon3
+      icon-clip: 36 0 12 12
+
+    VipListIconButton
+      id: icon4
+      icon-clip: 48 0 12 12
+
+    VipListIconButton
+      id: icon5
+      icon-clip: 60 0 12 12
+
+    VipListIconButton
+      id: icon6
+      icon-clip: 72 0 12 12
+
+    VipListIconButton
+      id: icon7
+      icon-clip: 84 0 12 12
+
+    VipListIconButton
+      id: icon8
+      icon-clip: 96 0 12 12
+
+    VipListIconButton
+      id: icon9
+      icon-clip: 108 0 12 12
+
+    VipListIconButton
+      id: icon10
+      icon-clip: 120 0 12 12
+
+    VipListIconButton
+      id: icon0
+
+  HorizontalSeparator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 10
+
+  Button
+    id: buttonOK
+    &loc: '${CorelibInfoOk}'
+    width: 64
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+
+  Button
+    id: buttonCancel
+    &loc: '${CorelibInfoCancel}'
+    width: 64
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom

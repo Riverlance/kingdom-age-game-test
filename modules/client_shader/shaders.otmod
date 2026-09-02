@@ -1,0 +1,9 @@
+Module
+  name: client_shader
+  description: Manage map (on game screen) shaders
+  author:
+  website:
+  scripts: [ shaders.lua ]
+  sandboxed: true
+  @onLoad: ClientShaders.init()
+  @onUnload: ClientShaders.terminate()

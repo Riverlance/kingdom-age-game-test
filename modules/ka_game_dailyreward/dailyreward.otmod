@@ -1,0 +1,8 @@
+Module
+  name: ka_game_dailyreward
+  description: Claim daily rewards through the shrine item
+  author: River, Kamenuvol
+  sandboxed: true
+  scripts: [ dailyreward ]
+  @onLoad: GameDailyReward.init()
+  @onUnload: GameDailyReward.terminate()

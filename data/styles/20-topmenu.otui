@@ -1,0 +1,95 @@
+TopButton < UIButton
+  size: 26 26
+  image-source: /images/ui/_button/top_menu_hidden
+  image-border: 3
+
+  $!on !disabled:
+    image-clip: 0 0 26 26
+
+  $!on !disabled hover:
+    image-clip: 0 26 26 26
+
+  $!on !disabled pressed:
+    image-clip: 0 52 26 26
+
+  $on:
+    image-source: /images/ui/_button/top_menu_client
+    image-clip: 26 0 26 26
+
+  $on hover:
+    image-source: /images/ui/_button/top_menu_client
+    image-clip: 26 26 26 26
+
+  $on pressed:
+    image-source: /images/ui/_button/top_menu_client
+    image-clip: 26 52 26 26
+
+  $disabled:
+    image-clip: 52 0 26 26
+
+  $disabled hover:
+    image-clip: 52 26 26 26
+
+  $disabled pressed:
+    image-clip: 52 52 26 26
+
+TopToggleButton < UIButton
+  size: 26 26
+  image-source: /images/ui/_button/top_menu_game
+  image-border: 3
+
+  $!on !disabled:
+    image-clip: 0 0 26 26
+
+  $!on !disabled hover:
+    image-clip: 0 26 26 26
+
+  $!on !disabled pressed:
+    image-clip: 0 52 26 26
+
+  $on:
+    image-clip: 26 0 26 26
+
+  $on hover:
+    image-clip: 26 26 26 26
+
+  $on pressed:
+    image-clip: 26 52 26 26
+
+  $disabled:
+    image-clip: 52 0 26 26
+
+  $disabled hover:
+    image-clip: 52 26 26 26
+
+  $disabled pressed:
+    image-clip: 52 52 26 26
+
+TopMenuButtonsPanel < Panel
+  layout:
+    type: horizontalBox
+    spacing: 4
+    fit-children: true
+  padding: 6 4
+
+TopMenuPanel < Panel
+  height: 36
+  image-source: /images/ui/_background/default_stone_blue
+  image-repeated: true
+  border-width-bottom: 1
+  border-color: #98885e
+  focusable: false
+  visible: true
+  on: true
+
+  $!on:
+    visible: false
+
+TopMenuFrameCounterLabel < Label
+  font: verdana-11px-rounded
+  color: white
+  margin-top: 4
+  margin-left: 5
+
+TopMenuPingLabel < Label
+  font: verdana-11px-rounded

@@ -1,0 +1,87 @@
+ColorBar < HorizontalScrollBar
+  id: countScrollBar
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-left: 40
+  margin-top: 10
+  focusable: false
+  minimum: 0
+  maximum: 255
+  step: 1
+  show-value: true
+
+
+
+TrackerByPosWindow < MainWindow
+  size: 200 100
+  &loc: '${GameTrackerByPosWindowTitle}'
+
+  Label
+    id: posXLabel
+    !text: 'X:'
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 4
+
+  TextEdit
+    id: posX
+    !text: '0'
+    anchors.top: parent.top
+    anchors.left: prev.outsideRight
+    margin-left: 2
+    width: 45
+    max-length: 5
+
+  Label
+    id: posYLabel
+    !text: 'Y:'
+    anchors.top: parent.top
+    anchors.left: prev.outsideRight
+    margin-top: 4
+    margin-left: 4
+
+  TextEdit
+    id: posY
+    !text: '0'
+    anchors.top: parent.top
+    anchors.left: prev.outsideRight
+    margin-left: 2
+    width: 45
+    max-length: 5
+
+  Label
+    id: posZLabel
+    !text: 'Z:'
+    anchors.top: parent.top
+    anchors.left: prev.outsideRight
+    margin-top: 4
+    margin-left: 4
+
+  TextEdit
+    id: posZ
+    !text: '0'
+    anchors.top: parent.top
+    anchors.left: prev.outsideRight
+    margin-left: 2
+    width: 45
+    max-length: 5
+
+  Button
+    id: okButton
+    &loc: '${CorelibInfoOk}'
+    width: 64
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+
+  Button
+    id: cancelButton
+    &loc: '${CorelibInfoCancel}'
+    width: 64
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+
+
+
+TrackerByPosWindow
+  id: editTrackWindow

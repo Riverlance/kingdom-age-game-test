@@ -1,0 +1,39 @@
+MainWindow
+  size: 256 128
+  &loc: '${GameVipListWindowTitleAdd}'
+  @onEnter: GameVipList.addVip()
+  @onEscape: GameVipList.destroyAddWindow()
+
+  Label
+    &loc: '${GameVipListInfoCharName}:'
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+
+  TextEdit
+    id: name
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 4
+
+  HorizontalSeparator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 10
+
+  Button
+    &loc: '${CorelibInfoOk}'
+    width: 64
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+    @onClick: GameVipList.addVip()
+
+  Button
+    &loc: '${CorelibInfoCancel}'
+    width: 64
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: GameVipList.destroyAddWindow()

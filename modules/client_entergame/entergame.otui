@@ -1,0 +1,105 @@
+ServerListButton < UIButton
+  visible: false
+  size: 17 17
+  image-source: /images/ui/top_menu/minimap
+  image-color: #ffffffff
+
+  $hover !disabled:
+    image-color: #ffffff99
+
+  $pressed:
+    image-color: #ffffff44
+
+  $disabled:
+    image-color: #ffffff55
+
+
+
+
+
+MainWindow
+  id: enterGame
+  size: 600 204
+  draggable: false
+  image-source: /images/ui/enter_game/panel_background
+  &authenticatorEnabled: false
+  &authenticatorHeight: 44
+  &stayLoggedBoxEnabled: false
+  &stayLoggedBoxHeight: 24
+  @onEnter: ClientEnterGame.doLogin()
+
+  Label
+    id: accountNameBackground
+    size: 400 30
+    image-source: /images/ui/enter_game/label_background
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 9
+
+  MenuLabel
+    id: menuLabelAccountName
+    &loc: '${EnterGameAccountLabel}'
+    color: #c9bdab
+    anchors.verticalCenter: accountNameBackground.verticalCenter
+    anchors.left: accountNameBackground.left
+    margin-left: 50
+
+  PasswordTextEdit
+    id: accountNameTextEdit
+    size: 200 20
+    image-source: /images/ui/enter_game/text_edit
+    anchors.verticalCenter: accountNameBackground.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-left: 60
+
+  Label
+    id: accountPasswordBackground
+    size: 400 30
+    image-source: /images/ui/enter_game/label_background
+    anchors.top: accountNameBackground.outsideBottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 7
+
+  MenuLabel
+    id: menuLabelPassword
+    &loc: '${EnterGamePasswordLabel}'
+    color: #c9bdab
+    anchors.verticalCenter: accountPasswordBackground.verticalCenter
+    anchors.left: menuLabelAccountName.left
+
+  PasswordTextEdit
+    id: accountPasswordTextEdit
+    size: 200 20
+    image-source: /images/ui/enter_game/text_edit
+    anchors.verticalCenter: accountPasswordBackground.verticalCenter
+    anchors.left: accountNameTextEdit.left
+
+  CheckBox
+    id: rememberPasswordBox
+    &loc: '${EnterGamePasswordRememberCheckBox}'
+    &loct: '${EnterGamePasswordRememberTooltip}'
+    color: #c9bdab
+    anchors.top: accountPasswordBackground.outsideBottom
+    anchors.left: menuLabelAccountName.left
+    anchors.right: accountPasswordBackground.right
+    margin-top: 15
+    @onCheckChange: self:getParent():getChildById('autoLoginBox'):setEnabled(self:isChecked())
+
+  CheckBox
+    id: autoLoginBox
+    enabled: false
+    &loc: '${EnterGameAutoLoginCheckBox}'
+    &loct: '${EnterGameAutoLoginTooltip}'
+    color: #c9bdab
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+    anchors.right: prev.right
+    margin-top: 8
+
+  LightButton
+    &loc: '${EnterGameEnterButton}'
+    width: 64
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-bottom: 4
+    @onClick: ClientEnterGame.doLogin()

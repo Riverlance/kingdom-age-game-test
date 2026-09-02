@@ -1,0 +1,10 @@
+TooltipImage < Panel
+  background-color: #111111cc
+  border-width: 1
+  border-color: #98885e
+  phantom: true
+  focusable: false
+
+  Label
+    id: label
+    margin: 8

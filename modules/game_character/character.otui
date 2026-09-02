@@ -1,0 +1,374 @@
+CharacterProgressBar < ProgressBar
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-top: 1
+
+  $first:
+    anchors.top: parent.top
+    margin-top: 0
+
+  $!first:
+    anchors.top: prev.outsideBottom
+
+  $on:
+    visible: true
+    height: 16
+
+  $!on:
+    visible: false
+    height: 0
+    margin-top: 0
+
+CharacterProgressBarValue < Label
+  anchors.fill: prev
+  font: verdana-11px-rounded
+  text-offset: 0 1
+  text-align: center
+  phantom: false
+
+
+InventoryItem < Item
+
+HeadSlot < InventoryItem
+  id: slot1
+  image-source: /images/ui/slot/head
+  &position: {x=65535, y=1, z=0}
+  $on:
+    image-source: /images/ui/slot/head_blessed
+
+BodySlot < InventoryItem
+  id: slot4
+  image-source: /images/ui/slot/body
+  &position: {x=65535, y=4, z=0}
+  $on:
+    image-source: /images/ui/slot/body_blessed
+
+LegSlot < InventoryItem
+  id: slot7
+  image-source: /images/ui/slot/legs
+  &position: {x=65535, y=7, z=0}
+  $on:
+    image-source: /images/ui/slot/legs_blessed
+
+FeetSlot < InventoryItem
+  id: slot8
+  image-source: /images/ui/slot/feet
+  &position: {x=65535, y=8, z=0}
+  $on:
+    image-source: /images/ui/slot/feet_blessed
+
+NeckSlot < InventoryItem
+  id: slot2
+  image-source: /images/ui/slot/neck
+  &position: {x=65535, y=2, z=0}
+  $on:
+    image-source: /images/ui/slot/neck_blessed
+
+LeftSlot < InventoryItem
+  id: slot6
+  image-source: /images/ui/slot/left_hand
+  &position: {x=65535, y=6, z=0}
+  $on:
+    image-source: /images/ui/slot/left_hand_blessed
+
+FingerSlot < InventoryItem
+  id: slot9
+  image-source: /images/ui/slot/finger
+  &position: {x=65535, y=9, z=0}
+  $on:
+    image-source: /images/ui/slot/finger_blessed
+
+BackSlot < InventoryItem
+  id: slot3
+  image-source: /images/ui/slot/back
+  &position: {x=65535, y=3, z=0}
+  $on:
+    image-source: /images/ui/slot/back_blessed
+
+RightSlot < InventoryItem
+  id: slot5
+  image-source: /images/ui/slot/right_hand
+  &position: {x=65535, y=5, z=0}
+  $on:
+    image-source: /images/ui/slot/right_hand_blessed
+
+AmmoSlot < InventoryItem
+  id: slot10
+  image-source: /images/ui/slot/ammo
+  &position: {x=65535, y=10, z=0}
+  $on:
+    image-source: /images/ui/slot/ammo_blessed
+
+InboxSlot < InventoryItem
+  id: slot11
+  &position: {x=65535, y=11, z=0}
+
+
+
+
+
+CombatBox < ButtonBoxRounded
+  size: 20 20
+  icon-source: /images/ui/combat_mode/control
+
+ChaseModeBox < CombatBox
+  icon-clip: 60 0 20 20
+
+  $checked:
+    icon-clip: 60 20 20 20
+
+SafeFightBox < CombatBox
+  icon-clip: 80 0 20 20
+
+  $checked:
+    icon-clip: 80 20 20 20
+
+MountButton < CombatBox
+  icon-clip: 100 0 20 20
+
+  $checked:
+    icon-clip: 100 20 20 20
+
+
+
+
+
+MiniWindow
+  id: inventoryWindow
+  &loc: '${CharacterWindowTitle}'
+  icon: /images/ui/top_menu/healthinfo
+  // Mini window height is set in Lua
+  &save: true
+  &defaultHeight: 278
+
+  BallMenuButton
+    id: ballButton
+    &loct: '${ClientOptionsTitle}'
+    anchors.verticalCenter: lockButton.verticalCenter
+    anchors.right: lockButton.outsideLeft
+    @onClick: GameCharacter.onMiniWindowBallButton()
+
+  MiniWindowHeader
+    $on:
+      visible: true
+
+    $!on:
+      visible: false
+      height: 0
+
+    CharacterProgressBar
+      id: healthBarPrevious
+      background-color: #ffd122
+
+    CharacterProgressBar
+      id: healthBar
+      background-color: #ff4444
+      background-area-color: alpha
+
+      $!first:
+        anchors.top: prev.top
+        margin-top: 0
+
+    CharacterProgressBarValue
+      id: healthBarValueLabel
+      @onClick: ClientOptions.toggleOption('showHealth')
+
+    CharacterProgressBar
+      id: manaBar
+      background-color: #aa44ff
+
+      $!first:
+        anchors.top: healthBar.outsideBottom
+
+    CharacterProgressBarValue
+      id: manaBarValueLabel
+      @onClick: ClientOptions.toggleOption('showMana')
+
+    CharacterProgressBar
+      id: vigorBar
+      background-color: #ffa14f
+
+      $!first:
+        anchors.top: manaBar.outsideBottom
+
+    CharacterProgressBarValue
+      id: vigorBarValueLabel
+      @onClick: ClientOptions.toggleOption('showVigor')
+
+    CharacterProgressBar
+      id: capacityBar
+      background-color: #4facff
+
+      $!first:
+        anchors.top: vigorBar.outsideBottom
+
+    CharacterProgressBarValue
+      id: capacityBarValueLabel
+      @onClick: ClientOptions.toggleOption('showCapacity')
+
+    CharacterProgressBar
+      id: experienceBar
+      background-color: #8be866
+
+      $!first:
+        anchors.top: capacityBar.outsideBottom
+
+    CharacterProgressBarValue
+      id: experienceBarValueLabel
+      @onClick: ClientOptions.toggleOption('showExpBar')
+
+  MiniWindowContents
+    $on:
+      visible: true
+
+    $!on:
+      visible: false
+      height: 0
+
+    Panel
+      id: centerPanel
+      // Same width as outfitCreatureBox
+      width: 70
+      anchors.top: parent.top
+      anchors.bottom: parent.bottom
+      anchors.horizontalCenter: parent.horizontalCenter
+
+    Panel
+      id: leftPanel
+      anchors.top: centerPanel.top
+      anchors.bottom: centerPanel.bottom
+      anchors.left: parent.left
+      anchors.right: centerPanel.outsideLeft
+
+    Panel
+      id: rightPanel
+      anchors.top: centerPanel.top
+      anchors.bottom: centerPanel.bottom
+      anchors.left: centerPanel.outsideRight
+      anchors.right: parent.right
+
+    Creature
+      id: outfitCreatureBox
+      size: 70 70
+      anchors.top: centerPanel.top
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 4
+      padding: 1
+      creature-size: 107
+
+    Button
+      id: skillsButton
+      icon: /images/ui/top_menu/skills
+      &loct: '${CorelibSkillsWindowTitle}'
+      size: 34 18
+      anchors.top: outfitCreatureBox.top
+      anchors.horizontalCenter: leftPanel.horizontalCenter
+
+    HeadSlot
+      anchors.top: prev.outsideBottom
+      anchors.horizontalCenter: leftPanel.horizontalCenter
+      margin-top: 1
+
+    BodySlot
+      anchors.top: prev.outsideBottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 1
+
+    LegSlot
+      anchors.top: prev.outsideBottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 1
+
+    FeetSlot
+      anchors.top: prev.outsideBottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 1
+
+    Button
+      id: conditionsButton
+      icon: /images/ui/top_menu/conditions
+      &loct: '${CorelibConditionsWindowTitle}'
+      height: 18
+      anchors.top: prev.outsideBottom
+      anchors.left: prev.left
+      anchors.right: prev.right
+      margin-top: 1
+
+    Button
+      icon: /images/ui/top_menu/shop
+      &loct: '${CharacterButtonShopTooltip}'
+      size: 34 18
+      anchors.top: outfitCreatureBox.top
+      anchors.horizontalCenter: rightPanel.horizontalCenter
+      @onClick: g_platform.openUrl('https://kingdomageonline.com')
+
+    BackSlot
+      anchors.top: prev.outsideBottom
+      anchors.horizontalCenter: rightPanel.horizontalCenter
+      margin-top: 1
+
+    NeckSlot
+      anchors.top: prev.outsideBottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 1
+
+    FingerSlot
+      anchors.top: prev.outsideBottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 1
+
+    AmmoSlot
+      anchors.top: prev.outsideBottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 1
+
+    Button
+      icon: /images/ui/top_menu/deals
+      &loct: '${CharacterButtonDealsTooltip}'
+      height: 18
+      anchors.top: prev.outsideBottom
+      anchors.left: prev.left
+      anchors.right: prev.right
+      margin-top: 1
+      @onClick: GameInterface.toggleDealsButton()
+
+    LeftSlot
+      anchors.top: outfitCreatureBox.outsideBottom
+      anchors.left: centerPanel.left
+      margin-top: 5
+
+    RightSlot
+      anchors.top: outfitCreatureBox.outsideBottom
+      anchors.right: centerPanel.right
+      margin-top: 5
+
+    GameLabel
+      id: combatControls
+      size: 64 20
+      anchors.top: prev.outsideBottom
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 5
+
+      layout:
+        type: grid
+        cell-size: 20 20
+        cell-spacing: 2
+        num-columns: 3
+        num-lines: 1
+
+      ChaseModeBox
+        id: chaseModeBox
+        &loct: '${CharacterChaseModeBox}'
+
+      SafeFightBox
+        id: safeFightBox
+        &loct: '${CharacterSafeFightBox}'
+
+      MountButton
+        id: mountButton
+        &loct: '${CharacterMountButton}'
+
+    InboxSlot
+      anchors.top: combatControls.outsideBottom
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 6

@@ -1,0 +1,126 @@
+ConditionTabButton < TabButton
+  size: 20 20
+  icon-source: /images/ui/condition/filter
+
+ConditionWidget < UIWidget
+  size: 18 18
+
+  $!first:
+    margin-left: 2
+
+
+MiniWindow
+  id: conditionWindow
+  &loc: '${CorelibConditionsWindowTitle}'
+  icon: /images/ui/top_menu/conditions
+  &save: true
+  &contentMinimumHeight: 30
+
+  ArrowMenuButton
+    &loct: '${CorelibInfoShowOptions}'
+    anchors.verticalCenter: lockButton.verticalCenter
+    anchors.right: lockButton.outsideLeft
+    @onClick: GameConditions.onClickArrowMenuButton(self)
+
+    $on:
+      &loct: '${CorelibInfoHideOptions}'
+
+  BallMenuButton
+    id: sortMenuButton
+    @onClick: GameConditions.createSortMenu()
+
+  MiniWindowHeader
+    height: 20
+
+    $on:
+      height: 0
+
+    Panel
+      id: filterPanel
+      size: 108 20
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.horizontalCenter: parent.horizontalCenter
+      layout:
+        type: horizontalBox
+        spacing: 2
+
+      ConditionTabButton
+        id: filterDefault
+        &loct: '${GameConditionsTabFilterDefaultTooltipShow}'
+        icon-clip: 0 0 20 20
+        @onClick: GameConditions.onClickFilterDefault(self)
+
+        $on:
+          &loct: '${GameConditionsTabFilterDefaultTooltipHide}'
+          icon-clip: 0 20 20 20
+
+      ConditionTabButton
+        id: filterSelfPowers
+        &loct: '${GameConditionsTabFilterSelfPowersTooltipShow}'
+        icon-clip: 20 0 20 20
+        @onClick: GameConditions.onClickFilterSelfPowers(self)
+
+        $on:
+          &loct: '${GameConditionsTabFilterSelfPowersTooltipHide}'
+          icon-clip: 20 20 20 20
+
+      ConditionTabButton
+        id: filterOtherPowers
+        &loct: '${GameConditionsTabFilterOtherPowersTooltipShow}'
+        icon-clip: 40 0 20 20
+        @onClick: GameConditions.onClickFilterOtherPowers(self)
+
+        $on:
+          &loct: '${GameConditionsTabFilterOtherPowersTooltipHide}'
+          icon-clip: 40 20 20 20
+
+      ConditionTabButton
+        id: filterAggressive
+        &loct: '${GameConditionsTabFilterAggressiveTooltipShow}'
+        icon-clip: 60 0 20 20
+        @onClick: GameConditions.onClickFilterAggressive(self)
+
+        $on:
+          &loct: '${GameConditionsTabFilterAggressiveTooltipHide}'
+          icon-clip: 60 20 20 20
+
+      ConditionTabButton
+        id: filterNonAggressive
+        &loct: '${GameConditionsTabFilterNonAggressiveTooltipShow}'
+        icon-clip: 80 0 20 20
+        @onClick: GameConditions.onClickFilterNonAggressive(self)
+
+        $on:
+          &loct: '${GameConditionsTabFilterNonAggressiveTooltipHide}'
+          icon-clip: 80 20 20 20
+
+  MiniWindowContents
+
+    Panel
+      id: conditionPanel
+      focusable: false
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      padding: 5
+      layout:
+        type: verticalBox
+        fit-children: true
+
+  MiniWindowFooter
+    image-source: /images/ui/_background/default_stone_blue
+    height: 23
+
+    $on:
+      height: 0
+
+    Panel
+      id: defaultConditionPanel
+      height: 18
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.left: parent.left
+      anchors.right: parent.right
+      layout:
+        type: horizontalBox
+      margin-top: 2
+      margin-bottom: 2

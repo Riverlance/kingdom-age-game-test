@@ -1,0 +1,27 @@
+Separator < UIWidget
+  phantom: true
+  focusable: false
+
+HorizontalSeparator < Separator
+  image-source: /images/ui/_separator/separator_horizontal
+  height: 1
+
+VerticalSeparator < Separator
+  image-source: /images/ui/_separator/separator_vertical
+  width: 1
+
+HorizontalSeparatorTop < Separator
+  image-source: /images/ui/_separator/separator_horizontal_top
+  height: 3
+
+HorizontalSeparatorBottom < Separator
+  image-source: /images/ui/_separator/separator_horizontal_bottom
+  height: 3
+
+VerticalSeparatorLeft < Separator
+  image-source: /images/ui/_separator/separator_vertical_left
+  width: 3
+
+VerticalSeparatorRight < Separator
+  image-source: /images/ui/_separator/separator_vertical_right
+  width: 3

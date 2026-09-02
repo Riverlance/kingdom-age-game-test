@@ -1,0 +1,7 @@
+HotkeyListLabel < UIHotkeyLabel
+  font: verdana-11px-monochrome
+  text-offset: 2 0
+  focusable: true
+  phantom: false
+  draggable: true
+  border-color: #eeeeee

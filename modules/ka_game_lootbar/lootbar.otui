@@ -1,0 +1,39 @@
+LootPanel < UIWidget
+  id: lootPanel
+  size: 50 50
+  color: red
+  anchors.top: gameScreenArea.top
+  anchors.horizontalCenter: gameScreenArea.horizontalCenter
+  focusable: false
+  phantom: true
+
+ItemBoxLeft < UIWidget
+  size: 24 50
+  image-source: /images/ui/loot/bar_side_left
+  anchors.left: parent.left
+  anchors.top: parent.top
+  opacity: 0.85
+
+ItemBoxRight < UIWidget
+  size: 24 50
+  margin-left: 1
+  image-source: /images/ui/loot/bar_side_right
+  anchors.left: prev.right
+  anchors.top: parent.top
+  opacity: 0.85
+
+ItemBoxContainer < UIWidget
+  size: 34 50
+  margin-left: 1
+  phantom: false
+  image-source: /images/ui/loot/bar_box
+  anchors.left: prev.right
+  anchors.top: parent.top
+  opacity: 0.85
+
+  Item
+    id: item
+    virtual: true
+    phantom: true
+    anchors.centerIn: parent
+

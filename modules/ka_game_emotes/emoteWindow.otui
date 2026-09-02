@@ -1,0 +1,41 @@
+EmoteWindow < UIWidget
+  anchors.top: parent.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-top: 1
+  margin-bottom: 33
+  padding: 4
+  image-source: /images/ui/_background/default_stone_blue
+  image-repeated: true
+  border: 2 #98885e
+  layout:
+    type: grid
+    cell-size: 32 32
+    auto-spacing: true
+    flow:true
+    fit-children:true
+    num-columns: 5
+  focusable: false
+
+EmoteWindowButton < Button
+  &loct: '${GameEmotesButtonMainTooltip}'
+  size: 22 22
+  anchors.verticalCenter: parent.verticalCenter
+  anchors.right: next.left
+  margin-bottom: 1
+  margin-right: 3
+  @onClick: GameEmotes.toggleWindow()
+
+EmoteButton < UIButton
+  $hover:
+    border: 1 #98885e
+  $!hover:
+    border: 0 #98885e
+  @onClick: GameEmotes.useEmote(self.id)
+
+  UIWidget
+    anchors.fill: parent
+    phantom: true
+
+EmoteWindow
+  id: emoteWindow

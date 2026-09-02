@@ -1,0 +1,49 @@
+PageButton < Button
+
+
+
+ContainerWindow < MiniWindow
+  UIItem
+    id: containerItemWidget
+    virtual: true
+    size: 16 16
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 4
+    margin-left: 6
+
+  UpArrowMenuButton
+    anchors.verticalCenter: lockButton.verticalCenter
+    anchors.right: lockButton.outsideLeft
+
+  MiniWindowHeader
+    height: 28
+
+    Panel
+      id: pagePanel
+      anchors.fill: parent
+
+      Label
+        id: pageLabel
+        color: #c9bdab
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        text-auto-resize: true
+
+      PreviousButton
+        id: prevPageButton
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: parent.left
+        margin-left: 4
+
+      NextButton
+        id: nextPageButton
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        margin-right: 4
+
+  MiniWindowContents
+    layout:
+      type: grid
+      cell-size: 34 34
+      flow: true

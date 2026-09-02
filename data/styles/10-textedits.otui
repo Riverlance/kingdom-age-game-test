@@ -1,0 +1,29 @@
+TextEdit < UITextEdit
+  font: verdana-11px-antialised
+  color: #c9bdab
+  size: 86 22
+  text-offset: 0 4
+  opacity: 1
+  padding: 4
+  image-source: /images/ui/textedit
+  image-border: 1
+  selection-color: #ffffff
+  selection-background-color: #555955
+  $disabled:
+    color: #333b43ff
+    opacity: 0.5
+
+  Label
+    id: placeholder
+    color: #c9bdab
+    opacity: 0.5
+    anchors.fill: parent
+    text-align: topleft
+    text-wrap: true
+    phantom: true
+
+PasswordTextEdit < TextEdit
+  text-hidden: true
+
+MultilineTextEdit < TextEdit
+  multiline: true

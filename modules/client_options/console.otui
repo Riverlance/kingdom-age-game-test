@@ -1,0 +1,33 @@
+Panel
+
+  OptionCheckBox
+    id: autoDisableChatOnSendMessage
+    &loc: '${ClientOptionsAutoDisableChatOnSendMessage}'
+
+  OptionCheckBox
+    id: showTimestampsInConsole
+    &loc: '${ClientOptionsShowTimestampsInConsole}'
+
+  OptionCheckBox
+    id: showLevelsInConsole
+    &loc: '${ClientOptionsShowLevelsInConsole}'
+
+  OptionCheckBox
+    id: showInfoMessagesInConsole
+    &loc: '${ClientOptionsShowInfoMessagesInConsole}'
+
+  OptionCheckBox
+    id: showEventMessagesInConsole
+    &loc: '${ClientOptionsShowEventMessagesInConsole}'
+
+  OptionCheckBox
+    id: showStatusMessagesInConsole
+    &loc: '${ClientOptionsShowStatusMessagesInConsole}'
+
+  OptionCheckBox
+    id: showPrivateMessagesInConsole
+    &loc: '${ClientOptionsShowPrivateMessagesInConsole}'
+
+  OptionCheckBox
+    id: showPrivateMessagesOnScreen
+    &loc: '${ClientOptionsShowPrivateMessagesOnScreen}'

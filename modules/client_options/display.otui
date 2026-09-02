@@ -1,0 +1,166 @@
+Panel
+
+  OptionCheckBox
+    id: enableHighlightMouseTarget
+    &loc: '${ClientOptionsEnableHighlightMouseTarget}'
+
+  OptionLabel
+    &loc: '${ClientOptionsCrosshair}'
+    $!first:
+      anchors.top: prev.outsideBottom
+      margin-top: 4
+    anchors.right: parent.horizontalCenter
+    margin-right: 10
+
+  OptionComboBox
+    id: crosshair
+    anchors.top: prev.outsideBottom
+    anchors.right: prev.right
+    margin-top: 2
+
+  OptionLabel
+    &loc: '${ClientOptionsFloorViewMode}'
+    $!first:
+      anchors.top: prev.outsideBottom
+    anchors.right: parent.horizontalCenter
+    margin-right: 10
+
+  OptionComboBox
+    id: floorViewMode
+    anchors.top: prev.outsideBottom
+    anchors.right: prev.right
+    margin-top: 2
+
+  OptionLabel
+    &loc: '${ClientOptionsFloorFadingDelay}'
+    $!first:
+      anchors.top: crosshair.outsideBottom
+    anchors.left: parent.horizontalCenter
+    margin-left: 10
+
+  OptionScrollbar
+    id: floorFadingDelay
+    anchors.left: prev.left
+    minimum: 0
+    maximum: 1000
+    symbol: ms
+
+  OptionLabel
+    &loc: '${ClientOptionsShadowFloorIntensity}'
+    $!first:
+      anchors.top: floorViewMode.outsideBottom
+
+  OptionScrollbar
+    id: shadowFloorIntensity
+    minimum: 0
+    maximum: 100
+    symbol: %
+
+  OptionLabel
+    &loc: '${ClientOptionsCreatureInformationScale}'
+    anchors.right: parent.horizontalCenter
+    margin-right: 10
+
+  OptionScrollbar
+    id: creatureInformationScale
+    anchors.right: prev.right
+    minimum: 0
+    maximum: 9
+    minimum-text: Auto
+
+  OptionLabel
+    &loc: '${ClientOptionsStaticTextScale}'
+    $!first:
+      anchors.top: shadowFloorIntensity.outsideBottom
+    anchors.left: parent.horizontalCenter
+    margin-left: 10
+
+  OptionScrollbar
+    id: staticTextScale
+    anchors.top: prev.outsideBottom
+    anchors.left: prev.left
+    minimum: 0
+    maximum: 9
+    minimum-text: Auto
+
+  OptionLabel
+    &loc: '${ClientOptionsAnimatedTextScale}'
+    anchors.right: parent.horizontalCenter
+    margin-right: 10
+
+  OptionScrollbar
+    id: animatedTextScale
+    anchors.right: prev.right
+    minimum: 0
+    maximum: 9
+    minimum-text: Auto
+
+  OptionCheckBox
+    id: dontStretchShrink
+    &loc: '${ClientOptionsDontStretchShrink}'
+    &loct: '${ClientOptionsDontStretchShrinkTooltip}'
+    !tooltip-type: TooltipType.textBlock
+    $!first:
+      margin-top: 10
+
+  OptionCheckBox
+    id: showHotkeybars
+    &loc: '${ClientOptionsShowHotkeybars}'
+    &loct: '${ClientOptionsShowHotkeybarsTooltip}'
+    !tooltip-type: TooltipType.textBlock
+
+  OptionCheckBox
+    id: clearLootbarItemsOnEachDrop
+    &loc: '${ClientOptionsClearLootbarItemsOnEachDrop}'
+    &loct: '${ClientOptionsClearLootbarItemsOnEachDropTooltip}'
+    !tooltip-type: TooltipType.textBlock
+
+  OptionHorizontalSeparator
+
+  OptionCheckBox
+    id: showText
+    &loc: '${ClientOptionsShowText}'
+    $!first:
+      margin-top: 10
+
+  OptionCheckBox
+    id: showNames
+    &loc: '${ClientOptionsShowNames}'
+
+  OptionCheckBox
+    id: showIcons
+    &loc: '${ClientOptionsShowIcons}'
+
+  OptionCheckBox
+    id: showHealth
+    &loc: '${ClientOptionsShowHealth}'
+
+  OptionCheckBox
+    id: showMana
+    &loc: '${ClientOptionsShowMana}'
+    &loct: '${ClientOptionsShowManaTooltip}'
+    !tooltip-type: TooltipType.textBlock
+
+  OptionCheckBox
+    id: showVigor
+    &loc: '${ClientOptionsShowVigor}'
+
+  OptionCheckBox
+    id: showLevel
+    &loc: '${ClientOptionsShowLevel}'
+
+  OptionCheckBox
+    id: showExpBar
+    &loc: '${ClientOptionsShowExpBar}'
+
+  OptionCheckBox
+    id: showFps
+    &loc: '${ClientOptionsShowFps}'
+    &loct: '${ClientOptionsShowFpsTooltip}'
+    !tooltip-type: TooltipType.textBlock
+
+  OptionCheckBox
+    id: showPing
+    &loc: '${ClientOptionsShowPing}'
+    &loct: '${ClientOptionsShowPingTooltip}'
+    !tooltip-type: TooltipType.textBlock

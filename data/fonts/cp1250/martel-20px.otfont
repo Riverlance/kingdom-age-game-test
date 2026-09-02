@@ -1,0 +1,6 @@
+Font
+  name: martel-20px
+  texture: tex/martel-20px_cp1250
+  height: 22
+  glyph-size: 28 28
+  space-width: 9

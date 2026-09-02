@@ -1,0 +1,12 @@
+Module
+  name: game_statscircle
+  description: Draw stats circle in game map.
+  author: Kamenuvol, River
+
+  autoload: true
+  autoload-priority: 1000
+  sandboxed: true
+  dependencies: [ game_interface ]
+  scripts: [ game_statscircle ]
+  @onLoad: GameStatsCircle.init()
+  @onUnload: GameStatsCircle.terminate()

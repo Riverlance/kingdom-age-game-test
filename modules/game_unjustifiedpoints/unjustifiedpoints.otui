@@ -1,0 +1,66 @@
+SkullWidget < UIWidget
+  size: 11 11
+  anchors.right: parent.right
+  image-source: /images/game/creature/skull/socket
+
+MiniWindow
+  id: unjustifiedPointsWindow
+  &loc: '${GameUnjustifiedPointsWindowTitle}'
+  &defaultHeight: 91
+  icon: /images/ui/top_menu/unjustifiedpoints
+  @onOpen: GameUnjustifiedPoints.onMiniWindowOpen()
+  @onClose: GameUnjustifiedPoints.onMiniWindowClose()
+  &save: true
+
+  MiniWindowHeader
+    height: 14
+
+    Label
+      id: skullTimeLabel
+      !text: f(loc'%.2d:%.2d (${GameUnjustifiedPointsInfoFrags}: %d)', 0, 0, 0)
+      text-auto-resize: true
+      anchors.top: prev.bottom
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 3
+      font: verdana-11px-rounded
+      phantom: false
+
+  MiniWindowContents
+
+    SkullWidget
+      id: redSkullSkullWidget
+      anchors.top: parent.top
+      anchors.right: parent.right
+      margin: 4
+      image-source: /images/game/creature/skull/red
+
+    SkullWidget
+      id: blackSkullSkullWidget
+      anchors.top: prev.bottom
+      anchors.right: parent.right
+      margin: 4
+      image-source: /images/game/creature/skull/black
+
+    ProgressBar
+      id: redSkullProgressBar
+      height: 13
+      anchors.verticalCenter: redSkullSkullWidget.verticalCenter
+      anchors.left: parent.left
+      anchors.right: redSkullSkullWidget.left
+      margin-right: 4
+
+    ProgressBar
+      id: blackSkullProgressBar
+      height: 13
+      anchors.verticalCenter: blackSkullSkullWidget.verticalCenter
+      anchors.left: parent.left
+      anchors.right: blackSkullSkullWidget.left
+      margin-right: 4
+
+  MiniWindowFooter
+    height: 15
+
+    SkullWidget
+      id: currentSkullWidget
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.horizontalCenter: parent.horizontalCenter

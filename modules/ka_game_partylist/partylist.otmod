@@ -1,0 +1,10 @@
+Module
+  name: ka_game_partylist
+  description: Manage party list window
+  author: River
+  website: https://github.com/edubart/otclient
+  sandboxed: true
+  scripts: [ partylist ]
+  dependencies: [ client_topmenu, game_interface ]
+  @onLoad: GamePartyList.init()
+  @onUnload: GamePartyList.terminate()

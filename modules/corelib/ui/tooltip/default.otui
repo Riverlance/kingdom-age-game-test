@@ -1,0 +1,10 @@
+TooltipDefault < Label
+  font: sans-11px
+  text-align: center
+  text-auto-resize: true
+  padding: 4
+  background-color: #111111cc
+  border-width: 1
+  border-color: #98885e
+  phantom: true
+  focusable: false

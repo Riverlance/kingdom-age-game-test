@@ -1,0 +1,68 @@
+CheckBox < UICheckBox
+  size: 14 14
+  text-align: left
+  text-offset: 16 0
+  color: #c9bdab
+  image-color: #dfdfdfff
+  image-rect: 0 0 14 14
+  image-source: /images/ui/check_box
+  opacity: 1
+
+  $hover !disabled:
+    color: #ffffff
+
+  $!checked:
+    image-clip: 0 0 14 14
+
+  $hover !checked:
+    image-clip: 0 14 14 14
+
+  $checked:
+    image-clip: 14 0 14 14
+
+  $hover checked:
+    image-clip: 14 14 14 14
+
+  $disabled:
+    image-color: #dfdfdf88
+    color: #dfdfdf88
+    opacity: 0.5
+
+ColorBox < UICheckBox
+  size: 16 16
+  image-color: #dfdfdfff
+  image-source: /images/ui/color_box
+  border-width: 1
+
+  $checked:
+    image-clip: 16 0 16 16
+    border-color: #c9bdab
+
+  $!checked:
+    image-clip: 0 0 16 16
+    border-color: alpha
+
+ButtonBox < UICheckBox
+  font: verdana-11px-antialised
+  color: #98885e
+  size: 106 23
+  //text-offset: 0 0
+  text-align: center
+  image-source: /images/ui/_button/default_square
+  image-color: #dfdfdf
+  image-clip: 0 0 32 21
+  image-border: 4
+
+  $hover !disabled:
+    image-clip: 0 21 32 21
+
+  $checked:
+    image-clip: 0 63 32 21
+    color: #f2af4e
+
+  $disabled:
+    color: #98885e88
+    image-color: #dfdfdf88
+
+ButtonBoxRounded < ButtonBox
+  image-source: /images/ui/_button/default_rounded

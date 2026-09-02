@@ -1,0 +1,32 @@
+SpinBox < TextEdit
+  __class: UISpinBox
+  text-align: left
+  size: 86 22
+  padding: 0
+  padding-left: 2
+
+  Button
+    id: upButton
+    size: 10 10
+    image-source: /images/ui/_button/spinbox
+    image-clip: 0 0 10 10
+    anchors.top: parent.top
+    anchors.right: parent.right
+
+    $hover:
+      image-clip: 0 10 10 10
+    $pressed:
+      image-clip: 0 20 10 10
+
+  Button
+    id: downButton
+    size: 10 10
+    image-source: /images/ui/_button/spinbox
+    image-clip: 10 0 10 10
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+
+    $hover:
+      image-clip: 10 10 10 10
+    $pressed:
+      image-clip: 10 20 10 10

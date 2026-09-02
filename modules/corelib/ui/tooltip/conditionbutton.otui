@@ -1,0 +1,129 @@
+TooltipConditionLabel < Label
+  anchors.top: prev.outsideBottom
+  anchors.left: parent.left
+  font: sans-11px
+
+TooltipConditionValueLabel < Label
+  anchors.top: prev.top
+  anchors.left: prev.outsideRight
+  anchors.right: parent.right
+  margin-left: 2
+  font: sans-11px
+
+
+
+TooltipConditionButton < Panel
+  width: 225
+  padding: 8
+  background-color: #111111cc
+  border-width: 1
+  border-color: #98885e
+  phantom: true
+  focusable: false
+
+  // Base
+
+  UIItem
+    id: conditionItemIcon
+    size: 32 32
+    anchors.top: parent.top
+    anchors.left: parent.left
+    phantom: true
+    virtual: true
+    image-source: /images/ui/slot/item
+
+  UIWidget
+    id: conditionPowerIcon
+    size: 32 32
+    anchors.top: parent.top
+    anchors.left: prev.right
+
+  Label
+    id: name
+    anchors.top: conditionPowerIcon.top
+    anchors.bottom: conditionPowerIcon.bottom
+    anchors.left: conditionPowerIcon.outsideRight
+    anchors.right: parent.right
+    font: sans-11px
+    color: #dfdfdf
+    text-align: center
+    image-source: /images/ui/_background/default_stone_blue
+    image-repeated: true
+
+  UIWidget
+    id: boostBar
+    anchors.top: conditionPowerIcon.outsideBottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+
+  // Info
+
+  TooltipConditionLabel
+    id: combatLabel
+    margin-top: 4
+
+    $!hidden:
+      !text: loc'${CorelibTooltipInfoCombat}:'
+
+  UIWidget
+    id: combatIcon
+    size: 11 11
+    anchors.verticalCenter: prev.verticalCenter
+    anchors.right: parent.right
+
+  TooltipConditionValueLabel
+    id: combatValue
+    anchors.top: combatLabel.top
+    anchors.left: combatLabel.outsideRight
+    anchors.right: prev.outsideLeft
+    margin-right: 2
+
+
+  TooltipConditionLabel
+    id: boostLabel
+    anchors.top: combatValue.outsideBottom
+
+    $!hidden:
+      !text: loc'${CorelibTooltipInfoBoost}:'
+
+  TooltipConditionValueLabel
+    id: boostValue
+
+
+  TooltipConditionLabel
+    id: attributeLabel
+
+    $!hidden:
+      !text: loc'${CorelibTooltipInfoAttribute}:'
+
+  TooltipConditionValueLabel
+    id: attributeValue
+
+
+  TooltipConditionLabel
+    id: durationLabel
+
+    $!hidden:
+      !text: loc'${CorelibTooltipInfoDuration}:'
+
+  TooltipConditionValueLabel
+    id: durationValue
+
+
+  TooltipConditionLabel
+    id: ownerLabel
+
+    $!hidden:
+      !text: loc'${CorelibTooltipInfoCreatedBy}:'
+
+  TooltipConditionValueLabel
+    id: ownerValue
+
+  TooltipConditionLabel
+    id: descriptionLabel
+    anchors.top: prev.outsideBottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 10
+    margin-left: 2
+    color: #e6db74

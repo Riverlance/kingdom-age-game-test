@@ -1,0 +1,9 @@
+Module
+  name: ka_game_tracker
+  description: Tracker System
+  author: Kamenuvol
+  sandboxed: true
+  autoload: true
+  scripts: [ tracker ]
+  @onLoad: GameTracker.init()
+  @onUnload: GameTracker.terminate()

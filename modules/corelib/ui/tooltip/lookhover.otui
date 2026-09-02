@@ -1,0 +1,19 @@
+TooltipLookHover < Panel
+  width: 300
+  background-color: #111111cc
+  border-width: 1
+  border-color: #98885e
+  phantom: true
+  focusable: false
+
+  Label
+    id: label
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin: 8
+    font: sans-11px
+    text-align: center
+    text-vertical-auto-resize: true
+    text-wrap: true
+    color: #e6db74

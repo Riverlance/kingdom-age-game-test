@@ -1,0 +1,84 @@
+Panel
+
+  OptionButton
+    id: hotkeysButton
+    &loc: '${GameHotkeysWindowTitle}'
+    &loct: '${GameHotkeysWindowTitle} (${GameHotkeysActionKey})'
+    @locpar: return { GameHotkeysActionKey = GameHotkeysActionKey }
+    @onClick: GameHotkeys.toggle()
+
+  OptionHorizontalSeparator
+
+  OptionCheckBox
+    id: classicControl
+    &loc: '${ClientOptionsClassicControl}'
+    &loct: '${ClientOptionsClassicControlTooltip}'
+    !tooltip-type: TooltipType.textBlock
+    $!first:
+      margin-top: 10
+
+  OptionCheckBox
+    id: autoChaseOverride
+    &loc: '${ClientOptionsAutoChaseOverride}'
+    &loct: '${ClientOptionsAutoChaseOverrideTooltip}'
+    !tooltip-type: TooltipType.textBlock
+
+  OptionHorizontalSeparator
+
+  OptionCheckBox
+    id: smartWalk
+    &loc: '${ClientOptionsSmartWalk}'
+    &loct: '${ClientOptionsSmartWalkTooltip}'
+    !tooltip-type: TooltipType.textBlock
+    $!first:
+      margin-top: 10
+
+  OptionCheckBox
+    id: bouncingKeys
+    &loc: '${ClientOptionsBouncingKeys}'
+    &loct: '${ClientOptionsBouncingKeysTooltip}'
+    !tooltip-type: TooltipType.textBlock
+
+  OptionCheckBox
+    id: cycleWalk
+    &loc: '${ClientOptionsCycleWalk}'
+    &loct: '${ClientOptionsCycleWalkTooltip}'
+    !tooltip-type: TooltipType.textBlock
+
+  OptionHorizontalSeparator
+
+  OptionLabel
+    &loc: '${ClientOptionsBouncingKeysDelayScrollBarLabel}'
+
+  OptionScrollbar
+    id: bouncingKeysDelayScrollBar
+    minimum: 100
+    maximum: 1000
+    symbol: ms
+
+  OptionLabel
+    &loc: '${ClientOptionsCycleWalkDelayLabel}'
+
+  OptionScrollbar
+    id: cycleWalkDelay
+    minimum: 50
+    maximum: 1000
+    symbol: ms
+
+  OptionLabel
+    &loc: '${ClientOptionsTurnDelayLabel}'
+
+  OptionScrollbar
+    id: turnDelay
+    minimum: 30
+    maximum: 250
+    symbol: ms
+
+  OptionLabel
+    &loc: '${ClientOptionsHotkeyDelayLabel}'
+
+  OptionScrollbar
+    id: hotkeyDelay
+    minimum: 30
+    maximum: 250
+    symbol: ms

@@ -1,0 +1,11 @@
+Module
+  name: game_textmessage
+  description: Manage game text messages
+  author: edubart
+  website: https://github.com/edubart/otclient
+  sandboxed: true
+  scripts: [ textmessage ]
+  // Needs game_console because of translations
+  dependencies: [ client_options, game_interface, game_console ]
+  @onLoad: GameTextMessage.init()
+  @onUnload: GameTextMessage.terminate()

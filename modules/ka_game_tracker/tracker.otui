@@ -1,0 +1,55 @@
+ColorBar < HorizontalScrollBar
+  id: countScrollBar
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-left: 40
+  margin-top: 10
+  focusable: false
+  minimum: 0
+  maximum: 255
+  step: 1
+  show-value: true
+
+
+
+TrackerWindow < MainWindow
+  size: 200 150
+  &loc: '${GameTrackerWindowTitle}'
+
+  UIWidget
+    id: colorDisplay
+    size: 32 32
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+
+  ColorBar
+    id: red
+    anchors.top: parent.top
+
+  ColorBar
+    id: green
+    anchors.top: prev.bottom
+
+  ColorBar
+    id: blue
+    anchors.top: prev.bottom
+
+  Button
+    id: okButton
+    &loc: '${CorelibInfoOk}'
+    width: 64
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+
+  Button
+    id: cancelButton
+    &loc: '${CorelibInfoCancel}'
+    width: 64
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+
+
+
+TrackerWindow
+  id: editTrackWindow

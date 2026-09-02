@@ -1,0 +1,6 @@
+Font
+  name: sans-11px
+  texture: tex/sans-11px_cp1250
+  height: 16
+  glyph-size: 20 20
+  space-width: 3

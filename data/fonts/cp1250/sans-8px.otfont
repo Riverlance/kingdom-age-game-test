@@ -1,0 +1,6 @@
+Font
+  name: sans-8px
+  texture: tex/sans-8px_cp1250
+  height: 11
+  glyph-size: 15 15
+  space-width: 3

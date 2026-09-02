@@ -1,0 +1,215 @@
+// Choices
+ModalChoice < Label
+  font: verdana-11px-monochrome
+  background-color: alpha
+  text-offset: 2 0
+  focusable: true
+  border-width: 1
+  border-color: alpha
+  color: #c9bdab
+
+  $focus:
+    color: #ffffff
+    border-color: #98885e
+    background-color: #cccccc44
+
+  InfoMenuButton
+    anchors.right: parent.right
+    !tooltip-type: TooltipType.textBlock
+
+    $hidden:
+      size: 0 0
+
+  Label
+    id: infoLabel
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.right: prev.outsideLeft
+    font: verdana-11px-monochrome
+    background-color: alpha
+    text-offset: 2 0
+    color: #c9bdab
+    focusable: false
+    phantom: true
+
+    $hidden:
+      width: 0
+
+// CheckBoxes
+ModalCheckBox < CheckBox
+
+  InfoMenuButton
+    anchors.right: parent.right
+    !tooltip-type: TooltipType.textBlock
+
+// Fields
+ModalField < TextEdit
+  focusable: true
+
+  InfoMenuButton
+    anchors.right: parent.right
+    !tooltip-type: TooltipType.textBlock
+
+// Buttons
+ModalButton < Button
+  text-auto-resize: true
+
+  $pressed:
+    text-offset: 0 0
+
+
+
+ModalDialog < MainWindow
+  id: modalDialog
+  size: 200 150
+
+  UIWidget
+    id: guideLine0
+    height: 1
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    focusable: false
+    visible: false
+    //background: green
+
+  Label
+    id: messageLabel
+    anchors.top: prev.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    text-align: left
+    //background: green
+
+    $hidden:
+      height: 1
+
+  UIWidget
+    id: guideLine1
+    height: 1
+    anchors.top: prev.outsideBottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 8
+    focusable: false
+    //background: green
+
+    $hidden:
+      margin-top: 0
+
+  VerticalScrollBar
+    id: choiceScrollBar
+    anchors.top: prev.bottom
+    anchors.right: parent.right
+    step: 14
+    pixels-scroll: false
+    visible: false
+
+    $hidden:
+      width: 0
+
+  TextList
+    id: choiceList
+    vertical-scrollbar: choiceScrollBar
+    anchors.top: prev.top
+    anchors.bottom: prev.bottom
+    anchors.left: parent.left
+    anchors.right: prev.outsideLeft
+    visible: false
+
+  UIWidget
+    id: guideLine2
+    height: 1
+    anchors.top: prev.outsideBottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 8
+    focusable: false
+    //background: green
+
+    $hidden:
+      margin-top: 0
+
+  VerticalScrollBar
+    id: checkBoxScrollBar
+    anchors.top: prev.bottom
+    anchors.right: parent.right
+    step: 14
+    pixels-scroll: false
+    visible: false
+
+    $hidden:
+      width: 0
+
+  VerticalList
+    id: checkBoxList
+    vertical-scrollbar: checkBoxScrollBar
+    anchors.top: prev.top
+    anchors.bottom: prev.bottom
+    anchors.left: parent.left
+    anchors.right: prev.outsideLeft
+    visible: false
+
+    // Based on values used on TextList
+    auto-focus: none
+    padding: 1
+
+  UIWidget
+    id: guideLine3
+    height: 1
+    anchors.top: prev.outsideBottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 8
+    focusable: false
+    //background: green
+
+    $hidden:
+      margin-top: 0
+
+  VerticalScrollBar
+    id: fieldScrollBar
+    anchors.top: prev.bottom
+    anchors.right: parent.right
+    step: 22
+    pixels-scroll: false
+    visible: false
+
+    $hidden:
+      width: 0
+
+  VerticalList
+    id: fieldList
+    vertical-scrollbar: fieldScrollBar
+    anchors.top: prev.top
+    anchors.bottom: prev.bottom
+    anchors.left: parent.left
+    anchors.right: prev.outsideLeft
+    visible: false
+
+    // Based on values used on TextList
+    auto-focus: none
+    padding: 1
+
+
+
+  HorizontalSeparator
+    id: bottomSeparator
+    anchors.bottom: next.outsideTop
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-bottom: 8
+
+  Panel
+    id: buttonsPanel
+
+    // Button height
+    height: 23
+
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    layout: horizontalBox
+      align-right: true
+
+    $hidden:
+      width: 1

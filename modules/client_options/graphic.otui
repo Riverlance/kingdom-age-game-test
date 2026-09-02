@@ -1,0 +1,113 @@
+Panel
+
+  OptionLabel
+    &loc: '${ClientOptionsBackgroundFrameRate}'
+
+  OptionScrollbar
+    id: backgroundFrameRate
+    minimum: 10
+    maximum: 201
+    symbol: FPS
+
+  OptionLabel
+    id: gameScreenSizeLabel
+    &loc: '${ClientOptionsGameScreenSize}'
+
+  OptionScrollbar
+    id: gameScreenSize
+    minimum: 11
+    maximum: 19
+    symbol: SQMs
+
+  OptionLabel
+    &loc: '${ClientOptionsUiScale}'
+    anchors.right: parent.horizontalCenter
+    margin-right: 10
+
+  OptionComboBox
+    id: uiScale
+    anchors.top: prev.outsideBottom
+    anchors.right: prev.right
+    margin-top: 2
+
+  OptionLabel
+    &loc: '${ClientOptionsShaderFilter}'
+    anchors.right: parent.horizontalCenter
+    margin-right: 10
+
+  OptionComboBox
+    id: shaderFilter
+    anchors.top: prev.outsideBottom
+    anchors.right: prev.right
+    margin-top: 2
+
+  OptionLabel
+    &loc: '${ClientOptionsViewMode}'
+    $!first:
+      anchors.top: uiScale.outsideBottom
+    anchors.left: parent.horizontalCenter
+    margin-left: 10
+
+  OptionComboBox
+    id: viewMode
+    anchors.top: prev.outsideBottom
+    anchors.left: prev.left
+    margin-top: 2
+
+  OptionCheckBox
+    id: transposedView
+    &loc: '${ClientOptionsTransposedView}'
+    &loct: '${ClientOptionsTransposedViewTooltip}'
+    !tooltip-type: TooltipType.textBlock
+    $!first:
+      margin-top: 10
+
+  OptionCheckBox
+    id: showClouds
+    &loc: '${ClientOptionsShowClouds}'
+
+  OptionHorizontalSeparator
+
+  OptionCheckBox
+    id: optimizeFps
+    &loc: '${ClientOptionsOptimizeFps}'
+    &loct: '${ClientOptionsOptimizeFpsTooltip}'
+    !tooltip-type: TooltipType.textBlock
+    $!first:
+      margin-top: 10
+
+  OptionCheckBox
+    id: vsync
+    &loc: '${ClientOptionsVsync}'
+    &loct: '${ClientOptionsVsyncTooltip}'
+    !tooltip-type: TooltipType.textBlock
+
+  OptionCheckBox
+    id: fullscreen
+    &loc: '${ClientOptionsFullscreen}'
+    &loct: '${ClientOptionsFullscreenTooltip}: ${ClientOptionsFullscreenActionKey}.'
+    @locpar: return { ClientOptionsFullscreenActionKey = ClientOptionsFullscreenActionKey }
+    !tooltip-type: TooltipType.textBlock
+
+  OptionCheckBox
+    id: showMouseItemIcon
+    &loc: '${ClientOptionsShowMouseItemIcon}'
+    &loct: '${ClientOptionsShowMouseItemIconTooltip}'
+    anchors.right: parent.horizontalCenter
+    margin-right: 10
+
+  OptionLabel
+    id: mouseItemIconOpacityLabel
+    &loc: '${ClientOptionsMouseItemIconOpacityLabel}'
+    $!first:
+      anchors.top: prev.top
+      margin-top: 0
+    anchors.left: parent.horizontalCenter
+    margin-left: 10
+
+  OptionScrollbar
+    id: mouseItemIconOpacity
+    minimum: 0
+    maximum: 100
+    symbol: %
+    anchors.left: prev.left

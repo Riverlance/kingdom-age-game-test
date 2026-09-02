@@ -1,0 +1,52 @@
+UIWidget
+  id: updaterWindow
+  size: 600 400
+  anchors.centerIn: parent
+
+  UIWidget
+    id: icon
+    size: 340 336
+    image-source: /images/ui/updater/icon
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+
+  // Visual only
+  UIWidget
+    id: emptyBar
+    size: 600 64
+    image-source: /images/ui/updater/bar_empty
+    anchors.top: prev.outsideBottom
+    anchors.horizontalCenter: parent.horizontalCenter
+
+  UIProgressBar
+    id: bar
+    size: 570 64
+    image-source: /images/ui/updater/bar_full
+    anchors.centerIn: prev
+
+  Label
+    id: topText
+    color: #f0f0f0
+    anchors.top: emptyBar.top
+    anchors.left: emptyBar.left
+    margin-top: 17
+    margin-left: 29
+    text-horizontal-auto-resize: true
+
+  Label
+    id: bottomText
+    color: #f0f0f0
+    anchors.bottom: emptyBar.bottom
+    anchors.left: prev.left
+    margin-bottom: 17
+    text-horizontal-auto-resize: true
+
+  Label
+    id: rightText
+    height: 28
+    font: delitschantiqua-20px
+    color: #f0f0f0
+    anchors.verticalCenter: emptyBar.verticalCenter
+    anchors.right: emptyBar.right
+    margin-right: 29
+    text-horizontal-auto-resize: true

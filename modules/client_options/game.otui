@@ -1,0 +1,58 @@
+Panel
+
+  OptionButton
+    id: changeLocaleButton
+    &loc: '${ClientOptionsChangeLocaleButton}'
+    &loct: '${ClientOptionsChangeLocaleButtonTooltip}'
+    !tooltip-type: TooltipType.textBlock
+    // Do not put it inside options.lua
+    @onClick: |
+      if not g_game.isOnline() then
+        g_locales.createWindow()
+      end
+
+  OptionButton
+    icon: /images/ui/top_menu/party_level_calculator
+    &loct: '${ClientOptionsPartyListLevelCalculatorWindowTitle}'
+    !tooltip-type: TooltipType.textBlock
+    size: 23 23
+    @onClick: GamePartyList.partyLevelCalculatorWindowToggle()
+
+  OptionHorizontalSeparator
+
+  OptionCheckBox
+    id: moveFullStack
+    &loc: '${ClientOptionsMoveFullStack}'
+    &loct: '${ClientOptionsMoveFullStackTooltip}'
+    !tooltip-type: TooltipType.textBlock
+    $!first:
+      margin-top: 10
+
+  OptionCheckBox
+    id: goldLootAutoDeposit
+    &loc: '${ClientOptionsGoldLootAutoDeposit}'
+    !tooltip: f(loc'${ClientOptionsGoldLootAutoDepositTooltip}', 20)
+    !tooltip-type: TooltipType.textBlock
+
+  OptionHorizontalSeparator
+
+  OptionButton
+    icon: /images/ui/top_menu/links
+    &loct: '${ClientOptionsButtonLinksTooltip}'
+    !tooltip-type: TooltipType.textBlock
+    size: 23 23
+    $!first:
+      margin-top: 10
+    @onClick: g_platform.openUrl('https://linktr.ee/kingdomage')
+
+  OptionButton
+    icon: /images/ui/top_menu/discord
+    &loct: '${ClientOptionsButtonDiscordTooltip}'
+    !tooltip-type: TooltipType.textBlock
+    size: 23 23
+    $!first:
+      anchors.top: prev.top
+      margin-top: 0
+    anchors.left: prev.outsideRight
+    margin-left: 4
+    @onClick: g_platform.openUrl('https://discord.gg/vZjxdwp')

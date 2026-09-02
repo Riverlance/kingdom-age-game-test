@@ -1,0 +1,23 @@
+VipListLabel < GameLabel
+  margin-top: 2
+  text-offset: 16 0
+  image-rect: 0 0 12 12
+  image-clip: 0 0 12 12
+  image-source: /images/ui/vip_list/icons
+  font: verdana-11px-monochrome
+  phantom: false
+
+  $first:
+    margin-top: 4
+
+MiniWindow
+  id: vipWindow
+  &loc: '${GameVipListWindowTitle}'
+  icon: /images/ui/top_menu/viplist
+  &save: true
+  &contentMinimumHeight: 24
+
+  MiniWindowContents
+    layout: verticalBox
+    padding-left: 4
+    padding-right: 4

@@ -1,0 +1,6 @@
+Font
+  name: sans-10px
+  texture: tex/sans-10px_cp1252
+  height: 14
+  glyph-size: 18 18
+  space-width: 3

@@ -1,0 +1,176 @@
+NextOutfitButton < NextButton
+PrevOutfitButton < PreviousButton
+NextMountButton < NextButton
+PrevMountButton < PreviousButton
+
+MainWindow
+  &loc: '${GameOutfitWindowTitle}'
+  size: 340 340
+
+  @onEnter: GameOutfit.accept()
+  @onEscape: GameOutfit.destroy()
+
+  // Creature Boxes
+  Creature
+    id: outfitCreatureBox
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 15
+    margin-left: 16
+    padding: 1
+    creature-size: 123
+
+  Label
+    id: outfitName
+    &loc: '${GameOutfitOutfitName}'
+    text-auto-resize: true
+    anchors.bottom: prev.top
+    anchors.left: prev.left
+    anchors.right: parent.right
+    margin-bottom: 2
+
+  NextOutfitButton
+    id: outfitNextButton
+    anchors.left: outfitCreatureBox.right
+    anchors.verticalCenter: outfitCreatureBox.verticalCenter
+    margin-left: 3
+    enabled: true
+    @onClick: GameOutfit.nextOutfitType()
+
+  PrevOutfitButton
+    id: outfitPrevButton
+    anchors.right: outfitCreatureBox.left
+    anchors.verticalCenter: outfitCreatureBox.verticalCenter
+    margin-right: 3
+    enabled: true
+    @onClick: GameOutfit.previousOutfitType()
+
+  Creature
+    id: mountCreatureBox
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 15
+    margin-right: 16
+    padding: 1
+    creature-size: 123
+
+  Label
+    id: mountName
+    &loc: '${GameOutfitMountName}'
+    text-auto-resize: true
+    text-align: right
+    anchors.bottom: prev.top
+    anchors.left: parent.left
+    anchors.right: prev.right
+    margin-bottom: 2
+
+  NextMountButton
+    id: mountNextButton
+    anchors.left: mountCreatureBox.right
+    anchors.verticalCenter: mountCreatureBox.verticalCenter
+    margin-left: 3
+    enabled: true
+    @onClick: GameOutfit.nextMountType()
+
+  PrevMountButton
+    id: mountPrevButton
+    anchors.right: mountCreatureBox.left
+    anchors.verticalCenter: mountCreatureBox.verticalCenter
+    margin-right: 3
+    enabled: true
+    @onClick: GameOutfit.previousMountType()
+
+  // Addon Check Boxes
+
+  CheckBox
+    id: addon1
+    &loc: '${GameOutfitAddon} 1'
+    width: 80
+    anchors.top: outfitCreatureBox.bottom
+    anchors.left: parent.left
+    margin-top: 6
+    margin-left: 2
+    enabled: false
+
+  CheckBox
+    id: addon2
+    &loc: '${GameOutfitAddon} 2'
+    width: 80
+    anchors.top: prev.top
+    anchors.left: prev.right
+    enabled: false
+
+  // Body Selection Buttons
+
+  ButtonBox
+    id: head
+    &loc: '${GameOutfitHead}'
+    anchors.top: addon1.bottom
+    anchors.left: parent.left
+    margin-top: 5
+    checked: true
+    width: 75
+
+  ButtonBox
+    id: primary
+    &loc: '${GameOutfitPrimary}'
+    anchors.top: prev.top
+    anchors.left: prev.outsideRight
+    width: 75
+
+  ButtonBox
+    id: secondary
+    &loc: '${GameOutfitSecondary}'
+    anchors.top: prev.top
+    anchors.left: prev.outsideRight
+    width: 75
+
+  ButtonBox
+    id: detail
+    &loc: '${GameOutfitDetail}'
+    anchors.top: prev.top
+    anchors.left: prev.outsideRight
+    width: 75
+
+  // Color Panel
+
+  Panel
+    id: colorBoxPanel
+    size: 302 110
+    anchors.top: head.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 10
+    layout:
+      type: grid
+      cell-size: 14 14
+      cell-spacing: 2
+      num-columns: 19
+      num-lines: 7
+
+  // Action Button Section
+
+  Button
+    id: randomizeButton
+    &loc: '${GameOutfitRandomizeButton}'
+    &loct: '${GameOutfitRandomizeButtonTooltip}'
+    width: 100
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    @onClick: GameOutfit.randomize()
+
+  Button
+    id: outfitCancelButton
+    &loc: '${CorelibInfoCancel}'
+    width: 64
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    @onClick: GameOutfit.destroy()
+
+  Button
+    id: outfitOkButton
+    &loc: '${CorelibInfoOk}'
+    width: 64
+    anchors.bottom: parent.bottom
+    anchors.right: prev.left
+    margin-right: 16
+    @onClick: GameOutfit.accept()

@@ -1,0 +1,135 @@
+CharacterWidget < UIWidget
+  height: 14
+  background-color: alpha
+  border-width: 1
+  border-color: alpha
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+
+  $focus:
+    background-color: #cccccc44
+    border-color: #98885e
+
+  Label
+    id: name
+    anchors.top: parent.top
+    anchors.left: parent.left
+    font: verdana-11px-monochrome
+    text-auto-resize: true
+    text-offset: 2 0
+    color: #c9bdab
+
+    $on:
+      color: #ffffff
+
+  Label
+    id: worldName
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-right: 5
+    font: verdana-11px-monochrome
+    text-auto-resize: true
+    color: #c9bdab
+    &baseText: '(%s)'
+
+    $on:
+      color: #ffffff
+
+MainWindow
+  id: charactersWindow
+  // &loc is not working in here, so I used `!text: loc'...'`
+  !text: loc'${CharacterListTitle}'
+  visible: false
+  draggable: false
+  @onEnter: ClientCharacterList.doLogin()
+  @onEscape: ClientCharacterList.hide(true)
+  @onSetup: |
+    g_keyboard.bindKeyPress('Up', function() self:getChildById('characters'):focusPreviousChild(KeyboardFocusReason) end, self)
+    g_keyboard.bindKeyPress('Down', function() self:getChildById('characters'):focusNextChild(KeyboardFocusReason) end, self)
+    if g_game.getFeature(GamePreviewState) then
+      self:setSize({width = 350, height = 400})
+    else
+      self:setSize({width = 250, height = 248})
+    end
+
+  TextList
+    id: characters
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: characterListScrollBar.left
+    anchors.bottom: accountStatusCaption.top
+    margin-bottom: 5
+    padding: 1
+    focusable: false
+    vertical-scrollbar: characterListScrollBar
+    auto-focus: first
+
+  VerticalScrollBar
+    id: characterListScrollBar
+    anchors.top: parent.top
+    anchors.bottom: accountStatusCaption.top
+    anchors.right: parent.right
+    margin-bottom: 5
+    step: 14
+    pixels-scroll: true
+
+  Label
+    id: accountStatusCaption
+    &loc: '${CharacterListAccountStatusLabel}:'
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 1
+
+  Label
+    id: accountStatusLabel
+    &loc: '${CharacterListAccountStatusValueFree}'
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: separator.top
+    margin-bottom: 5
+    text-auto-resize: true
+
+    $on:
+      color: #FF0000
+
+  HorizontalSeparator
+    id: separator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 10
+
+  LightButton
+    id: buttonLogout
+    &loc: '${CorelibInfoLogout}'
+    &loct: '${CorelibInfoLogout} (${ClientLogoutKey})'
+    @locpar: return { ClientLogoutKey = ClientLogoutKey }
+    width: 64
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    @onClick: GameInterface.tryLogout()
+
+  LightButton
+    id: buttonOk
+    &loc: '${CorelibInfoOk}'
+    width: 64
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+    @onClick: ClientCharacterList.doLogin()
+
+  LightButton
+    id: buttonCancel
+    &loc: '${CorelibInfoCancel}'
+    width: 64
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: ClientCharacterList.hide(true)

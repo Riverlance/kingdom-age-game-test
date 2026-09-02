@@ -1,0 +1,335 @@
+MinimapFlag < UIWidget
+  size: 11 11
+  focusable: false
+
+MinimapCross < UIWidget
+  focusable: false
+  phantom: true
+  image: /images/ui/minimap/cross
+  size: 16 16
+
+Minimap < UIMinimap
+  draggable: true
+  focusable: false
+  cross: true
+  color: black
+
+MinimapRegionLabel < UIWidget
+  focusable: false
+  phantom: true
+  font: sans-8px
+  text-auto-resize: true
+  color: #ffffff
+  background-color: #000000bb
+
+// Minimap Flag Create Window
+
+MinimapFlagCheckBox < CheckBox
+  size: 15 15
+  anchors.left: prev.right
+  anchors.top: prev.top
+  margin-left: 2
+  image-source: /images/ui/minimap/flagcheckbox
+  image-size: 15 15
+  image-border: 3
+  icon-size: 11 11
+  icon-offset: 2 2
+  icon-clip: 0 0 11 11
+
+  $!checked:
+    image-clip: 0 0 26 26
+
+  $!checked hover:
+    image-clip: 0 26 26 26
+
+  $!checked pressed:
+    image-clip: 0 52 26 26
+
+  $checked:
+    image-clip: 26 0 26 26
+
+  $checked hover:
+    image-clip: 26 26 26 26
+
+  $checked pressed:
+    image-clip: 26 52 26 26
+
+  // Icon
+
+  $hover:
+    icon-clip: 0 11 11 11
+
+  $pressed:
+    icon-clip: 0 22 11 11
+
+MinimapAddFlagWindow < MainWindow
+  &loc: '${ClientStylesMapInfoAddMark}'
+  size: 196 185
+
+  Label
+    &loc: '${ClientStylesMapInfoPosition}:'
+    text-auto-resize: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 2
+
+  Label
+    id: position
+    text-auto-resize: true
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 2
+
+  Label
+    &loc: '${CorelibInfoDescription}:'
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-top: 7
+
+  TextEdit
+    id: description
+    margin-top: 3
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    anchors.right: parent.right
+
+  // See lastMinimapMarkId at minimap.lua
+
+  MinimapFlagCheckBox
+    id: flag0
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-top: 6
+    margin-left: 0
+    icon-source: /images/ui/minimap/flag0
+
+  MinimapFlagCheckBox
+    id: flag1
+    icon-source: /images/ui/minimap/flag1
+
+  MinimapFlagCheckBox
+    id: flag2
+    icon-source: /images/ui/minimap/flag2
+
+  MinimapFlagCheckBox
+    id: flag3
+    icon-source: /images/ui/minimap/flag3
+
+  MinimapFlagCheckBox
+    id: flag4
+    icon-source: /images/ui/minimap/flag4
+
+  MinimapFlagCheckBox
+    id: flag5
+    icon-source: /images/ui/minimap/flag5
+
+  MinimapFlagCheckBox
+    id: flag6
+    icon-source: /images/ui/minimap/flag6
+
+  MinimapFlagCheckBox
+    id: flag7
+    icon-source: /images/ui/minimap/flag7
+
+  MinimapFlagCheckBox
+    id: flag8
+    icon-source: /images/ui/minimap/flag8
+
+  MinimapFlagCheckBox
+    id: flag9
+    icon-source: /images/ui/minimap/flag9
+
+  MinimapFlagCheckBox
+    id: flag10
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-top: 6
+    margin-left: 0
+    icon-source: /images/ui/minimap/flag10
+
+  MinimapFlagCheckBox
+    id: flag11
+    icon-source: /images/ui/minimap/flag11
+
+  MinimapFlagCheckBox
+    id: flag12
+    icon-source: /images/ui/minimap/flag12
+
+  MinimapFlagCheckBox
+    id: flag13
+    icon-source: /images/ui/minimap/flag13
+
+  MinimapFlagCheckBox
+    id: flag14
+    icon-source: /images/ui/minimap/flag14
+
+  MinimapFlagCheckBox
+    id: flag15
+    icon-source: /images/ui/minimap/flag15
+
+  MinimapFlagCheckBox
+    id: flag16
+    icon-source: /images/ui/minimap/flag16
+
+  MinimapFlagCheckBox
+    id: flag17
+    icon-source: /images/ui/minimap/flag17
+
+  MinimapFlagCheckBox
+    id: flag18
+    icon-source: /images/ui/minimap/flag18
+
+  MinimapFlagCheckBox
+    id: flag19
+    icon-source: /images/ui/minimap/flag19
+
+  Button
+    id: okButton
+    &loc: '${CorelibInfoOk}'
+    width: 64
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+
+  Button
+    id: cancelButton
+    &loc: '${CorelibInfoCancel}'
+    width: 64
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+
+MinimapEditFlagWindow < MainWindow
+  &loc: '${ClientStylesMapInfoEditMark}'
+  size: 196 185
+
+  Label
+    &loc: '${ClientStylesMapInfoPosition}:'
+    text-auto-resize: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 2
+
+  Label
+    id: position
+    text-auto-resize: true
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 2
+
+  Label
+    &loc: '${CorelibInfoDescription}:'
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-top: 7
+
+  TextEdit
+    id: description
+    margin-top: 3
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    anchors.right: parent.right
+
+  // See lastMinimapMarkId at minimap.lua
+
+  MinimapFlagCheckBox
+    id: flag0
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-top: 6
+    margin-left: 0
+    icon-source: /images/ui/minimap/flag0
+
+  MinimapFlagCheckBox
+    id: flag1
+    icon-source: /images/ui/minimap/flag1
+
+  MinimapFlagCheckBox
+    id: flag2
+    icon-source: /images/ui/minimap/flag2
+
+  MinimapFlagCheckBox
+    id: flag3
+    icon-source: /images/ui/minimap/flag3
+
+  MinimapFlagCheckBox
+    id: flag4
+    icon-source: /images/ui/minimap/flag4
+
+  MinimapFlagCheckBox
+    id: flag5
+    icon-source: /images/ui/minimap/flag5
+
+  MinimapFlagCheckBox
+    id: flag6
+    icon-source: /images/ui/minimap/flag6
+
+  MinimapFlagCheckBox
+    id: flag7
+    icon-source: /images/ui/minimap/flag7
+
+  MinimapFlagCheckBox
+    id: flag8
+    icon-source: /images/ui/minimap/flag8
+
+  MinimapFlagCheckBox
+    id: flag9
+    icon-source: /images/ui/minimap/flag9
+
+  MinimapFlagCheckBox
+    id: flag10
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-top: 6
+    margin-left: 0
+    icon-source: /images/ui/minimap/flag10
+
+  MinimapFlagCheckBox
+    id: flag11
+    icon-source: /images/ui/minimap/flag11
+
+  MinimapFlagCheckBox
+    id: flag12
+    icon-source: /images/ui/minimap/flag12
+
+  MinimapFlagCheckBox
+    id: flag13
+    icon-source: /images/ui/minimap/flag13
+
+  MinimapFlagCheckBox
+    id: flag14
+    icon-source: /images/ui/minimap/flag14
+
+  MinimapFlagCheckBox
+    id: flag15
+    icon-source: /images/ui/minimap/flag15
+
+  MinimapFlagCheckBox
+    id: flag16
+    icon-source: /images/ui/minimap/flag16
+
+  MinimapFlagCheckBox
+    id: flag17
+    icon-source: /images/ui/minimap/flag17
+
+  MinimapFlagCheckBox
+    id: flag18
+    icon-source: /images/ui/minimap/flag18
+
+  MinimapFlagCheckBox
+    id: flag19
+    icon-source: /images/ui/minimap/flag19
+
+  Button
+    id: okButton
+    &loc: '${CorelibInfoOk}'
+    width: 64
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+
+  Button
+    id: cancelButton
+    &loc: '${CorelibInfoCancel}'
+    width: 64
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom

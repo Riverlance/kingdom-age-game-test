@@ -1,0 +1,218 @@
+HotkeyAssignWindow < MainWindow
+  id: assignWindow
+  &loc: '${GameHotkeysAssignWindow}'
+  size: 360 150
+
+  Label
+    &loc: '${GameHotkeysAssignWindowTip}'
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: parent.top
+    text-auto-resize: true
+    text-align: left
+
+  Label
+    id: comboPreview
+    !text: f(loc'${GameHotkeysAssignWindowComboPreview}: %s', loc'${CorelibInfoNone}')
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: prev.bottom
+    margin-top: 10
+    text-auto-resize: true
+
+  HorizontalSeparator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 10
+
+  Button
+    id: addButton
+    &loc: '${CorelibInfoAdd}'
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 4
+
+  Button
+    id: cancelButton
+    &loc: '${CorelibInfoCancel}'
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+
+
+
+MainWindow
+  id: hotkeysWindow
+  &loc: '${GameHotkeysWindowTitle}'
+  size: 500 555
+
+  @onEnter: GameHotkeys.ok()
+  @onEscape: GameHotkeys.cancel()
+
+  Label
+    &loc: '${GameHotkeysWindowTip}'
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    font: sans-8px
+    text-auto-resize: true
+
+  VerticalScrollBar
+    id: currentHotkeysScrollBar
+    height: 265
+    anchors.top: prev.bottom
+    anchors.right: parent.right
+    margin-top: 10
+    step: 14
+    pixels-scroll: true
+
+  TextList
+    id: currentHotkeys
+    vertical-scrollbar: currentHotkeysScrollBar
+    anchors.left: parent.left
+    anchors.right: prev.left
+    anchors.top: prev.top
+    anchors.bottom: prev.bottom
+    focusable: false
+
+  Button
+    id: applyHotkeyButton
+    &loc: '${CorelibInfoApply}'
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    margin-top: 8
+    enabled: false
+    @onClick: GameHotkeys.apply()
+
+  Button
+    id: resetHotkeyButton
+    &loc: '${CorelibInfoReset}'
+    anchors.top: prev.top
+    anchors.left: prev.outsideRight
+    margin-left: 4
+    enabled: false
+    @onClick: GameHotkeys.resetHotkey()
+
+  Button
+    id: addHotkeyButton
+    &loc: '${CorelibInfoAdd}'
+    anchors.top: next.top
+    anchors.right: next.left
+    margin-right: 4
+    @onClick: GameHotkeys.assignHotkey()
+
+  Button
+    id: removeHotkeyButton
+    &loc: '${CorelibInfoRemove}'
+    anchors.top: currentHotkeys.bottom
+    anchors.right: parent.right
+    margin-top: 8
+    enabled: false
+    @onClick: GameHotkeys.removeHotkey()
+
+  HorizontalSeparator
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 10
+
+  Label
+    id: hotkeyItemLabel
+    &loc: '${GameHotkeysHotkeyItemLabel}:'
+    text-auto-resize: true
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    margin-top: 10
+
+  Item
+    id: itemPreview
+    anchors.top: prev.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 3
+    virtual: true
+    draggable: true
+
+  UIWidget
+    id: useGroup
+    width: 120
+    layout:
+      type: verticalBox
+      fit-children: true
+    anchors.top: hotkeyItemLabel.top
+    anchors.right: parent.right
+
+    ButtonBox
+      id: useOnSelf
+      &loc: '${GameHotkeysUseOnSelf}'
+
+    ButtonBox
+      id: useOnTarget
+      &loc: '${GameHotkeysUseOnTarget}'
+      margin-top: 2
+
+    ButtonBox
+      id: useWith
+      &loc: '${GameHotkeysUseWith}'
+      margin-top: 2
+
+  HorizontalSeparator
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 10
+
+  Label
+    id: hotkeyTextLabel
+    &loc: '${GameHotkeysHotkeyTextLabel}:'
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    margin-top: 10
+    text-auto-resize: true
+
+  CheckBox
+    id: sendAutomatically
+    &loc: '${GameHotkeysSendAutomatically}'
+    anchors.top: prev.top
+    anchors.right: parent.right
+    text-auto-resize: true
+    enabled:false
+    @onCheckChange: GameHotkeys.onSendAutomaticallyChange(self:isChecked())
+
+  TextEdit
+    id: hotkeyText
+    enabled: false
+    anchors.top: hotkeyTextLabel.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 10
+    @onTextChange: GameHotkeys.onHotkeyTextChange(self:getText())
+
+  Button
+    id: applyAllButton
+    &loc: '${GameHotkeysApplyAllButton}'
+    width: 120
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    @onClick: GameHotkeys.applyChanges()
+
+  Button
+    id: resetButton
+    &loc: '${GameHotkeysResetButton}'
+    width: 120
+    anchors.left: prev.right
+    anchors.bottom: parent.bottom
+    margin-left: 4
+    @onClick: GameHotkeys.discardChanges()
+
+  Button
+    id: okButton
+    &loc: '${CorelibInfoOk}'
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 4
+    @onClick: GameHotkeys.ok()
+
+  Button
+    id: cancelButton
+    &loc: '${CorelibInfoCancel}'
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: GameHotkeys.cancel()

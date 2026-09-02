@@ -1,0 +1,6 @@
+Font
+  name: sans-20px-bold
+  texture: tex/sans-20px-bold_cp1252
+  height: 28
+  glyph-size: 28 28
+  space-width: 9

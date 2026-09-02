@@ -1,0 +1,6 @@
+HoverLookTooltip < UIWidget
+  id: hoverLookTooltipWidget
+  focusable: false
+  phantom: true
+  visible: false
+  @onTooltipHoverChange: return false

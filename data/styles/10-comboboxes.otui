@@ -1,0 +1,144 @@
+// Combobox Square - Scroll Content Button
+ComboBoxPopupScrollMenuButton < UIButton
+  height: 23
+  font: sans-11px
+  text-align: left
+  text-offset: 4 0
+  color: #dfdfdf
+  background-color: alpha
+  margin: 1
+
+  $hover !disabled:
+    color: #dfdfdf
+    background-color: #212629
+
+  $disabled:
+    color: #dfdfdf88
+
+// Combobox Square - Scroll Content Popup Menu
+ComboBoxPopupScrollMenu < UIPopupScrollMenu
+  image-source: /images/ui/combobox_square
+  image-clip: 0 69 91 23
+  image-border-top: 1
+  image-border-bottom: 1
+  image-border-left: 1
+  image-border-right: 22
+
+// Combobox Square - Content Button
+ComboBoxPopupMenuButton < UIButton
+  height: 23
+  font: sans-11px
+  text-align: left
+  text-offset: 4 0
+  color: #dfdfdf
+  background-color: alpha
+  margin: 1
+
+  $hover !disabled:
+    color: #dfdfdf
+    background-color: #212629
+
+  $disabled:
+    color: #dfdfdf88
+
+// Combobox Square - Content Popup Menu
+ComboBoxPopupMenu < UIPopupMenu
+  image-source: /images/ui/combobox_square
+  image-clip: 0 69 91 23
+  image-border-top: 1
+  image-border-bottom: 1
+  image-border-left: 1
+  image-border-right: 22
+
+// Combobox Square
+ComboBox < UIComboBox
+  font: sans-11px
+  color: #dfdfdf
+  size: 91 23
+  text-offset: 3 0
+  text-align: left
+  image-source: /images/ui/combobox_square
+  image-border-top: 1
+  image-border-bottom: 1
+  image-border-left: 1
+  image-border-right: 22
+  image-clip: 0 0 91 23
+  &menuScroll: true
+  // The correct would be 115 and 23, but it needs 124 31 to work fine and I don't know why
+  // On ComboBoxRounded it works normally
+  &menuHeight: 124
+  &menuScrollStep: 31
+
+  $hover !disabled:
+    image-clip: 0 23 91 23
+
+  $on:
+    image-clip: 0 46 91 23
+
+  $disabled:
+    color: #dfdfdf88
+    opacity: 0.8
+
+
+
+
+
+// Combobox Rounded - Scroll Content Button
+ComboBoxRoundedPopupScrollMenuButton < UIButton
+  height: 23
+  font: sans-11px
+  text-align: left
+  text-offset: 4 0
+  color: #dfdfdf
+  background-color: alpha
+
+  $hover !disabled:
+    color: #ffffff
+    background-color: #212629
+
+  $disabled:
+    color: #dfdfdf88
+
+// Combobox Rounded - Scroll Content Popup Menu
+ComboBoxRoundedPopupScrollMenu < UIPopupScrollMenu
+  image-source: /images/ui/combobox_rounded
+  image-clip: 0 69 91 23
+  image-border-top: 4
+  image-border-bottom: 4
+  image-border-left: 5
+  image-border-right: 22
+
+// Combobox Rounded - Content Button
+ComboBoxRoundedPopupMenuButton < UIButton
+  height: 23
+  font: sans-11px
+  text-align: left
+  text-offset: 4 0
+  color: #dfdfdf
+  background-color: alpha
+
+  $hover !disabled:
+    color: #ffffff
+    background-color: #212629
+
+  $disabled:
+    color: #dfdfdf88
+
+// Combobox Rounded - Content Popup Menu
+ComboBoxRoundedPopupMenu < UIPopupMenu
+  image-source: /images/ui/combobox_rounded
+  image-clip: 0 69 91 23
+  image-border-top: 4
+  image-border-bottom: 4
+  image-border-left: 5
+  image-border-right: 22
+
+// Combobox Rounded
+ComboBoxRounded < ComboBox
+  image-source: /images/ui/combobox_rounded
+  image-border-top: 4
+  image-border-bottom: 4
+  image-border-left: 5
+  image-border-right: 22
+  &menuHeight: 115
+  &menuScrollStep: 23
