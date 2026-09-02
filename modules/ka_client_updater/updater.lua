@@ -47,9 +47,9 @@ function ClientUpdater.onUpdateStart()
 end
 
 function ClientUpdater.onUpdateProgress(receivedObj, totalObj, receivedBytes)
-  local percent = totalObj > 0 and (receivedObj/totalObj) * 100 or 0
+  local percent = (receivedObj/totalObj) * 100
   local deltaTime = (g_clock.millis() - startTime) / 1000
-  local avgSpeed = deltaTime > 0 and receivedBytes / 1024 / deltaTime or 0
+  local avgSpeed = receivedBytes / 1024 / deltaTime
   local receivedMB = receivedBytes / 1024 / 1024
 
   updaterWindow:getChildById('topText'):setText(f(loc'${KaClientUpdaterDownloading}', loc(receivedObj), loc(totalObj)))
@@ -59,12 +59,10 @@ function ClientUpdater.onUpdateProgress(receivedObj, totalObj, receivedBytes)
 end
 
 function ClientUpdater.onUpdateEnd()
-  displayOkBox(loc'${KaClientUpdaterEndTitle}', loc'${KaClientUpdaterEndMsg}', function()
-    g_updater.applyUpdate()
-  end)
+  displayOkBox(loc'${KaClientUpdaterEndTitle}', loc'${KaClientUpdaterEndMsg}', function() restart() end)
 end
 
 function ClientUpdater.onUpdateError(message)
   updaterWindow:hide()
-  displayErrorBox(loc'${CorelibInfoError}', message)
+  displayErrorBox('Updater Error', message)
 end
