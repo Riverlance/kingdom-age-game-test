@@ -18,7 +18,8 @@ function ClientUpdater.init()
   })
 
   updaterWindow = g_ui.displayUI('updater')
-  updaterWindow:hide()
+  updaterWindow:getChildById('topText'):setText('Loading...')
+  updaterWindow:show()
 end
 
 function ClientUpdater.terminate()
